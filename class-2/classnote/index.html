@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete HTML Course - Beginner to Advanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .toc-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .toc-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .toc-item a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc-item a:hover {
+            color: #667eea;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .tag-demo {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .tag-demo::before {
+            content: "Example";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #667eea;
+            color: white;
+            padding: 2px 10px;
+            font-size: 0.8em;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .result {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .result::before {
+            content: "Result:";
+            font-weight: bold;
+            color: #38a169;
+        }
+
+        .tag-info {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .use-case {
+            background: #fefcbf;
+            border: 1px solid #f6e05e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .use-case::before {
+            content: "Use Case: ";
+            font-weight: bold;
+            color: #d69e2e;
+        }
+
+        .interactive-demo {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-box {
+            background: #fef5e7;
+            border: 1px solid #f6ad55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .quiz-box h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .advanced-note {
+            background: #fed7d7;
+            border: 1px solid #fc8181;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .advanced-note::before {
+            content: "⚠️ Advanced: ";
+            font-weight: bold;
+            color: #e53e3e;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🌐 Complete HTML: Beginner to Advanced</h1>
+
+        <div class="toc">
+            <h2>📚 Course Table of Contents</h2>
+            <div class="toc-grid">
+                <div class="toc-item"><a href="#basics">1. HTML Basics</a></div>
+                <div class="toc-item"><a href="#structure">2. Document Structure</a></div>
+                <div class="toc-item"><a href="#text">3. Text Elements</a></div>
+                <div class="toc-item"><a href="#links">4. Links & Navigation</a></div>
+                <div class="toc-item"><a href="#images">5. Images & Media</a></div>
+                <div class="toc-item"><a href="#lists">6. Lists</a></div>
+                <div class="toc-item"><a href="#tables">7. Tables</a></div>
+                <div class="toc-item"><a href="#forms">8. Forms</a></div>
+                <div class="toc-item"><a href="#semantic">9. Semantic HTML</a></div>
+                <div class="toc-item"><a href="#multimedia">10. Multimedia</a></div>
+                <div class="toc-item"><a href="#advanced">11. Advanced Features</a></div>
+                <div class="toc-item"><a href="#accessibility">12. Accessibility</a></div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <!-- Section 1: HTML Basics -->
+        <section class="section" id="basics">
+            <h2>1. HTML Basics</h2>
+
+            <h3>What is HTML?</h3>
+            <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It uses tags to
+                structure content and tell browsers how to display information.</p>
+
+            <div class="tag-info">
+                <strong>Key Concepts:</strong>
+                <ul>
+                    <li>Tags are enclosed in angle brackets: &lt;tagname&gt;</li>
+                    <li>Most tags have opening and closing pairs</li>
+                    <li>Attributes provide additional information about tags</li>
+                    <li>HTML documents have a specific structure</li>
+                </ul>
+            </div>
+
+            <h3>Basic HTML Document Structure</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html lang="en"&gt;
+                    &lt;head&gt;
+                    &lt;meta charset="UTF-8"&gt;
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                    &lt;title&gt;My First Website&lt;/title&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+                    &lt;p&gt;This is my first HTML page!&lt;/p&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                </div>
+                <div class="result">
+                    <h1>Welcome to My Website</h1>
+                    <p>This is my first HTML page!</p>
+                </div>
+            </div>
+
+            <div class="use-case">
+                Every HTML document should start with this basic structure. It ensures proper rendering across all
+                browsers and devices.
+            </div>
+        </section>
+
+        <!-- Section 2: Document Structure -->
+        <section class="section" id="structure">
+            <h2>2. Document Structure Tags</h2>
+
+            <h3>&lt;!DOCTYPE html&gt;</h3>
+            <div class="tag-info">
+                <strong>Purpose:</strong> Declares the document type and HTML version<br>
+                <strong>Usage:</strong> Always the first line of your HTML document
+            </div>
+
+            <h3>&lt;html&gt;</h3>
+            <div class="tag-demo">
+                <div class="code-block">&lt;html lang="en"&gt;...&lt;/html&gt;</div>
+                <div class="tag-info">
+                    <strong>Purpose:</strong> Root element of the HTML document<br>
+                    <strong>Attributes:</strong> lang (language), dir (text direction)
+                </div>
+            </div>
+
+            <h3>&lt;head&gt;</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;head&gt;
+                    &lt;meta charset="UTF-8"&gt;
+                    &lt;meta name="description" content="My website description"&gt;
+                    &lt;meta name="keywords" content="HTML, CSS, JavaScript"&gt;
+                    &lt;meta name="author" content="John Doe"&gt;
+                    &lt;title&gt;Page Title&lt;/title&gt;
+                    &lt;link rel="stylesheet" href="styles.css"&gt;
+                    &lt;/head&gt;
+                </div>
+                <div class="use-case">
+                    Contains metadata, links to stylesheets, scripts, and other resources not visible to users
+                </div>
+            </div>
+
+            <h3>&lt;body&gt;</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;body&gt;
+                    &lt;h1&gt;Visible Content Goes Here&lt;/h1&gt;
+                    &lt;p&gt;This is what users see on the webpage.&lt;/p&gt;
+                    &lt;/body&gt;
+                </div>
+                <div class="use-case">
+                    Contains all visible content of the webpage
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Text Elements -->
+        <section class="section" id="text">
+            <h2>3. Text Elements</h2>
+            <h3>Headings (&lt;h1&gt; to &lt;h6&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;h1&gt;Main Heading&lt;/h1&gt;
+                    &lt;h2&gt;Section Heading&lt;/h2&gt;
+                    &lt;h3&gt;Subsection Heading&lt;/h3&gt;
+                    &lt;h4&gt;Sub-subsection Heading&lt;/h4&gt;
+                    &lt;h5&gt;Minor Heading&lt;/h5&gt;
+                    &lt;h6&gt;Smallest Heading&lt;/h6&gt;
+                </div>
+                <div class="result">
+                    <h1>Main Heading</h1>
+                    <h2>Section Heading</h2>
+                    <h3>Subsection Heading</h3>
+                    <h4>Sub-subsection Heading</h4>
+                    <h5>Minor Heading</h5>
+                    <h6>Smallest Heading</h6>
+                </div>
+            </div>
+
+            <h3>Paragraphs (&lt;p&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;p&gt;This is a paragraph of text. It can contain multiple sentences and will wrap automatically
+                    based on the container width.&lt;/p&gt;
+                    &lt;p&gt;This is another paragraph. Each paragraph tag creates a new block of text with spacing
+                    above and below.&lt;/p&gt;
+                </div>
+                <div class="result">
+                    <p>This is a paragraph of text. It can contain multiple sentences and will wrap automatically based
+                        on the container width.</p>
+                    <p>This is another paragraph. Each paragraph tag creates a new block of text with spacing above and
+                        below.</p>
+                </div>
+            </div>
+
+            <h3>Text Formatting Tags</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;strong&gt;Bold/Important text&lt;/strong&gt;
+                    &lt;em&gt;Emphasized/Italic text&lt;/em&gt;
+                    &lt;mark&gt;Highlighted text&lt;/mark&gt;
+                    &lt;small&gt;Small text&lt;/small&gt;
+                    &lt;del&gt;Deleted text&lt;/del&gt;
+                    &lt;ins&gt;Inserted text&lt;/ins&gt;
+                    &lt;sub&gt;Subscript&lt;/sub&gt; and &lt;sup&gt;Superscript&lt;/sup&gt;
+                </div>
+                <div class="result">
+                    <strong>Bold/Important text</strong><br>
+                    <em>Emphasized/Italic text</em><br>
+                    <mark>Highlighted text</mark><br>
+                    <small>Small text</small><br>
+                    <del>Deleted text</del><br>
+                    <ins>Inserted text</ins><br>
+                    <sub>Subscript</sub> and <sup>Superscript</sup>
+                </div>
+            </div>
+
+            <h3>Line Breaks and Horizontal Rules</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;p&gt;This is line one&lt;br&gt;This is line two&lt;/p&gt;
+                    &lt;hr&gt;
+                    &lt;p&gt;Content after horizontal rule&lt;/p&gt;
+                </div>
+                <div class="result">
+                    <p>This is line one<br>This is line two</p>
+                    <hr>
+                    <p>Content after horizontal rule</p>
+                </div>
+            </div>
+
+            <h3>Quotations</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;blockquote cite="https://example.com"&gt;
+                    This is a long quotation that will be indented and styled differently from regular text.
+                    &lt;/blockquote&gt;
+                    &lt;p&gt;Einstein said &lt;q&gt;Imagination is more important than knowledge.&lt;/q&gt;&lt;/p&gt;
+                </div>
+                <div class="result">
+                    <blockquote cite="https://example.com">
+                        This is a long quotation that will be indented and styled differently from regular text.
+                    </blockquote>
+                    <p>Einstein said <q>Imagination is more important than knowledge.</q></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Links & Navigation -->
+        <section class="section" id="links">
+            <h2>4. Links & Navigation</h2>
+
+            <h3>Basic Links (&lt;a&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;a href="https://www.example.com"&gt;External Link&lt;/a&gt;
+                    &lt;a href="#section1"&gt;Internal Link&lt;/a&gt;
+                    &lt;a href="mailto:contact@example.com"&gt;Email Link&lt;/a&gt;
+                    &lt;a href="tel:+1234567890"&gt;Phone Link&lt;/a&gt;
+                    &lt;a href="document.pdf" download&gt;Download PDF&lt;/a&gt;
+                </div>
+                <div class="result">
+                    <a href="https://www.example.com">External Link</a><br>
+                    <a href="#section1">Internal Link</a><br>
+                    <a href="mailto:contact@example.com">Email Link</a><br>
+                    <a href="tel:+1234567890">Phone Link</a><br>
+                    <a href="document.pdf" download>Download PDF</a>
+                </div>
+            </div>
+
+            <h3>Link Attributes</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
+                    Open in New Tab
+                    &lt;/a&gt;
+                    &lt;a href="https://example.com" title="Visit Example.com"&gt;
+                    Link with Tooltip
+                    &lt;/a&gt;
+                </div>
+                <div class="use-case">
+                    <strong>target="_blank":</strong> Opens link in new tab<br>
+                    <strong>rel="noopener noreferrer":</strong> Security attribute for external links<br>
+                    <strong>title:</strong> Tooltip text on hover
+                </div>
+            </div>
+
+            <h3>Navigation Structure</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;nav&gt;
+                    &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;/nav&gt;
+                </div>
+                <div class="result">
+                    <nav>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Images & Media -->
+        <section class="section" id="images">
+            <h2>5. Images & Media</h2>
+
+            <h3>Basic Images (&lt;img&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;img src="image.jpg" alt="Description of image" width="300" height="200"&gt;
+                    &lt;img src="responsive-image.jpg" alt="Responsive image" style="max-width: 100%; height: auto;"&gt;
+                </div>
+                <div class="tag-info">
+                    <strong>Essential Attributes:</strong><br>
+                    <strong>src:</strong> Image source URL<br>
+                    <strong>alt:</strong> Alternative text (crucial for accessibility)<br>
+                    <strong>width/height:</strong> Dimensions in pixels
+                </div>
+            </div>
+
+            <h3>Advanced Image Techniques</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;figure&gt;
+                    &lt;img src="photo.jpg" alt="Beautiful landscape"&gt;
+                    &lt;figcaption&gt;A beautiful landscape photograph&lt;/figcaption&gt;
+                    &lt;/figure&gt;
+
+                    &lt;picture&gt;
+                    &lt;source media="(min-width: 800px)" srcset="large-image.jpg"&gt;
+                    &lt;source media="(min-width: 400px)" srcset="medium-image.jpg"&gt;
+                    &lt;img src="small-image.jpg" alt="Responsive image"&gt;
+                    &lt;/picture&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;figure&gt;:</strong> Semantic container for images with captions<br>
+                    <strong>&lt;picture&gt;:</strong> Responsive images with multiple sources
+                </div>
+            </div>
+
+            <h3>Image Maps</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;img src="map.jpg" alt="Interactive map" usemap="#imagemap"&gt;
+                    &lt;map name="imagemap"&gt;
+                    &lt;area shape="rect" coords="0,0,100,100" href="#area1" alt="Area 1"&gt;
+                    &lt;area shape="circle" coords="200,200,50" href="#area2" alt="Area 2"&gt;
+                    &lt;area shape="poly" coords="300,300,400,350,350,400" href="#area3" alt="Area 3"&gt;
+                    &lt;/map&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;map&gt;:</strong> Defines clickable areas on an image<br>
+                    <strong>&lt;area&gt;:</strong> Defines individual clickable regions with different shapes
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Lists -->
+        <section class="section" id="lists">
+            <h2>6. Lists</h2>
+
+            <h3>Unordered Lists (&lt;ul&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;ul&gt;
+                    &lt;li&gt;First item&lt;/li&gt;
+                    &lt;li&gt;Second item&lt;/li&gt;
+                    &lt;li&gt;Third item
+                    &lt;ul&gt;
+                    &lt;li&gt;Nested item 1&lt;/li&gt;
+                    &lt;li&gt;Nested item 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;/li&gt;
+                    &lt;/ul&gt;
+                </div>
+                <div class="result">
+                    <ul>
+                        <li>First item</li>
+                        <li>Second item</li>
+                        <li>Third item
+                            <ul>
+                                <li>Nested item 1</li>
+                                <li>Nested item 2</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Ordered Lists (&lt;ol&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;ol&gt;
+                    &lt;li&gt;Step one&lt;/li&gt;
+                    &lt;li&gt;Step two&lt;/li&gt;
+                    &lt;li&gt;Step three&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;ol type="A"&gt;
+                    &lt;li&gt;Type A&lt;/li&gt;
+                    &lt;li&gt;Type B&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;ol start="5"&gt;
+                    &lt;li&gt;Starting from 5&lt;/li&gt;
+                    &lt;li&gt;This is 6&lt;/li&gt;
+                    &lt;/ol&gt;
+                </div>
+                <div class="result">
+                    <ol>
+                        <li>Step one</li>
+                        <li>Step two</li>
+                        <li>Step three</li>
+                    </ol>
+                    <ol type="A">
+                        <li>Type A</li>
+                        <li>Type B</li>
+                    </ol>
+                    <ol start="5">
+                        <li>Starting from 5</li>
+                        <li>This is 6</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3>Description Lists (&lt;dl&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;dl&gt;
+                    &lt;dt&gt;HTML&lt;/dt&gt;
+                    &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+
+                    &lt;dt&gt;CSS&lt;/dt&gt;
+                    &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+
+                    &lt;dt&gt;JavaScript&lt;/dt&gt;
+                    &lt;dd&gt;Programming language for web interactivity&lt;/dd&gt;
+                    &lt;/dl&gt;
+                </div>
+                <div class="result">
+                    <dl>
+                        <dt><strong>HTML</strong></dt>
+                        <dd>HyperText Markup Language</dd>
+                        <dt><strong>CSS</strong></dt>
+                        <dd>Cascading Style Sheets</dd>
+                        <dt><strong>JavaScript</strong></dt>
+                        <dd>Programming language for web interactivity</dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Tables -->
+        <section class="section" id="tables">
+            <h2>7. Tables</h2>
+
+            <h3>Basic Table Structure</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;table&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                    &lt;th&gt;Name&lt;/th&gt;
+                    &lt;th&gt;Age&lt;/th&gt;
+                    &lt;th&gt;City&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                    &lt;tr&gt;
+                    &lt;td&gt;John Doe&lt;/td&gt;
+                    &lt;td&gt;25&lt;/td&gt;
+                    &lt;td&gt;New York&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                    &lt;td&gt;Jane Smith&lt;/td&gt;
+                    &lt;td&gt;30&lt;/td&gt;
+                    &lt;td&gt;London&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                    &lt;/table&gt;
+                </div>
+                <div class="result">
+                    <table border="1" style="border-collapse: collapse; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 8px; background-color: #f0f0f0;">Name</th>
+                                <th style="padding: 8px; background-color: #f0f0f0;">Age</th>
+                                <th style="padding: 8px; background-color: #f0f0f0;">City</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px;">John Doe</td>
+                                <td style="padding: 8px;">25</td>
+                                <td style="padding: 8px;">New York</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">Jane Smith</td>
+                                <td style="padding: 8px;">30</td>
+                                <td style="padding: 8px;">London</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Advanced Table Features</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;table&gt;
+                    &lt;caption&gt;Sales Report Q1 2024&lt;/caption&gt;
+                    &lt;thead&gt;
+                    &lt;tr&gt;
+                    &lt;th rowspan="2"&gt;Product&lt;/th&gt;
+                    &lt;th colspan="3"&gt;Quarters&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                    &lt;th&gt;Q1&lt;/th&gt;
+                    &lt;th&gt;Q2&lt;/th&gt;
+                    &lt;th&gt;Q3&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                    &lt;tr&gt;
+                    &lt;td&gt;Product A&lt;/td&gt;
+                    &lt;td&gt;$1000&lt;/td&gt;
+                    &lt;td&gt;$1200&lt;/td&gt;
+                    &lt;td&gt;$1100&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                    &lt;tfoot&gt;
+                    &lt;tr&gt;
+                    &lt;td&gt;Total&lt;/td&gt;
+                    &lt;td&gt;$1000&lt;/td&gt;
+                    &lt;td&gt;$1200&lt;/td&gt;
+                    &lt;td&gt;$1100&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;/tfoot&gt;
+                    &lt;/table&gt;
+                </div>
+                <div class="use-case">
+                    <strong>colspan/rowspan:</strong> Merge cells across columns/rows<br>
+                    <strong>&lt;caption&gt;:</strong> Table title<br>
+                    <strong>&lt;tfoot&gt;:</strong> Table footer section
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Forms -->
+        <section class="section" id="forms">
+            <h2>8. Forms</h2>
+
+            <h3>Basic Form Structure</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;form action="/submit" method="post"&gt;
+                    &lt;label for="name"&gt;Name:&lt;/label&gt;
+                    &lt;input type="text" id="name" name="name" required&gt;
+
+                    &lt;label for="email"&gt;Email:&lt;/label&gt;
+                    &lt;input type="email" id="email" name="email" required&gt;
+
+                    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </div>
+                <div class="result">
+                    <form style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <button type="submit" style="margin-top: 10px;">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <h3>Input Types</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;!-- Text inputs --&gt;
+                    &lt;input type="text" placeholder="Text input"&gt;
+                    &lt;input type="password" placeholder="Password"&gt;
+                    &lt;input type="email" placeholder="Email"&gt;
+                    &lt;input type="url" placeholder="URL"&gt;
+                    &lt;input type="tel" placeholder="Phone"&gt;
+
+                    &lt;!-- Number inputs --&gt;
+                    &lt;input type="number" min="1" max="100" step="1"&gt;
+                    &lt;input type="range" min="0" max="100" value="50"&gt;
+
+                    &lt;!-- Date/Time inputs --&gt;
+                    &lt;input type="date"&gt;
+                    &lt;input type="time"&gt;
+                    &lt;input type="datetime-local"&gt;
+
+                    &lt;!-- Selection inputs --&gt;
+                    &lt;input type="checkbox" id="check1"&gt;
+                    &lt;label for="check1"&gt;Checkbox&lt;/label&gt;
+
+                    &lt;input type="radio" id="radio1" name="group"&gt;
+                    &lt;label for="radio1"&gt;Radio 1&lt;/label&gt;
+
+                    &lt;input type="file" accept=".jpg,.png,.pdf"&gt;
+                    &lt;input type="color" value="#ff0000"&gt;
+                </div>
+                <div class="result">
+                    <div style="display: grid; gap: 10px; max-width: 400px;">
+                        <input type="text" placeholder="Text input"
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="password" placeholder="Password"
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="email" placeholder="Email"
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="number" min="1" max="100" step="1"
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="date" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <div>
+                            <input type="checkbox" id="check1">
+                            <label for="check1">Checkbox</label>
+                        </div>
+                        <input type="file" accept=".jpg,.png,.pdf"
+                            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                </div>
+            </div>
+
+            <h3>Advanced Form Elements</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;form&gt;
+                    &lt;fieldset&gt;
+                    &lt;legend&gt;Personal Information&lt;/legend&gt;
+
+                    &lt;label for="country"&gt;Country:&lt;/label&gt;
+                    &lt;select id="country" name="country"&gt;
+                    &lt;option value=""&gt;Select a country&lt;/option&gt;
+                    &lt;option value="us"&gt;United States&lt;/option&gt;
+                    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+                    &lt;option value="ca"&gt;Canada&lt;/option&gt;
+                    &lt;/select&gt;
+
+                    &lt;label for="message"&gt;Message:&lt;/label&gt;
+                    &lt;textarea id="message" name="message" rows="4" cols="50"&gt;&lt;/textarea&gt;
+
+                    &lt;label for="browser"&gt;Choose browser:&lt;/label&gt;
+                    &lt;input list="browsers" id="browser" name="browser"&gt;
+                    &lt;datalist id="browsers"&gt;
+                    &lt;option value="Chrome"&gt;
+                    &lt;option value="Firefox"&gt;
+                    &lt;option value="Safari"&gt;
+                    &lt;option value="Edge"&gt;
+                    &lt;/datalist&gt;
+                    &lt;/fieldset&gt;
+                    &lt;/form&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;fieldset&gt;:</strong> Groups related form elements<br>
+                    <strong>&lt;legend&gt;:</strong> Caption for fieldset<br>
+                    <strong>&lt;datalist&gt;:</strong> Provides autocomplete options
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Semantic HTML -->
+        <section class="section" id="semantic">
+            <h2>9. Semantic HTML</h2>
+
+            <h3>Layout Semantics</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;header&gt;
+                    &lt;nav&gt;
+                    &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;/nav&gt;
+                    &lt;/header&gt;
+
+                    &lt;main&gt;
+                    &lt;article&gt;
+                    &lt;header&gt;
+                    &lt;h1&gt;Article Title&lt;/h1&gt;
+                    &lt;time datetime="2024-01-15"&gt;January 15, 2024&lt;/time&gt;
+                    &lt;/header&gt;
+
+                    &lt;section&gt;
+                    &lt;h2&gt;Section Heading&lt;/h2&gt;
+                    &lt;p&gt;Article content goes here...&lt;/p&gt;
+                    &lt;/section&gt;
+                    &lt;/article&gt;
+
+                    &lt;aside&gt;
+                    &lt;h3&gt;Related Links&lt;/h3&gt;
+                    &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Related Article 1&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Related Article 2&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;/aside&gt;
+                    &lt;/main&gt;
+
+                    &lt;footer&gt;
+                    &lt;p&gt;&copy; 2024 Company Name. All rights reserved.&lt;/p&gt;
+                    &lt;/footer&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;header&gt;:</strong> Introductory content<br>
+                    <strong>&lt;main&gt;:</strong> Main content area<br>
+                    <strong>&lt;article&gt;:</strong> Standalone content<br>
+                    <strong>&lt;section&gt;:</strong> Thematic grouping<br>
+                    <strong>&lt;aside&gt;:</strong> Sidebar content<br>
+                    <strong>&lt;footer&gt;:</strong> Footer information
+                </div>
+            </div>
+
+            <h3>Content Semantics</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;address&gt;
+                    Contact: &lt;a href="mailto:john@example.com"&gt;john@example.com&lt;/a&gt;
+                    &lt;/address&gt;
+
+                    &lt;details&gt;
+                    &lt;summary&gt;Click to expand&lt;/summary&gt;
+                    &lt;p&gt;Hidden content that can be toggled&lt;/p&gt;
+                    &lt;/details&gt;
+
+                    &lt;progress value="32" max="100"&gt;32%&lt;/progress&gt;
+
+                    &lt;meter value="6" min="0" max="10"&gt;6 out of 10&lt;/meter&gt;
+
+                    &lt;code&gt;console.log('Hello World');&lt;/code&gt;
+
+                    &lt;pre&gt;
+                    Preformatted text
+                    with preserved spacing
+                    &lt;/pre&gt;
+
+                    &lt;kbd&gt;Ctrl+C&lt;/kbd&gt; to copy
+                    &lt;samp&gt;Command output&lt;/samp&gt;
+                </div>
+                <div class="result">
+                    <address>
+                        Contact: <a href="mailto:john@example.com">john@example.com</a>
+                    </address>
+                    <details>
+                        <summary>Click to expand</summary>
+                        <p>Hidden content that can be toggled</p>
+                    </details>
+                    <progress value="32" max="100">32%</progress><br><br>
+                    <meter value="6" min="0" max="10">6 out of 10</meter><br><br>
+                    <code>console.log('Hello World');</code><br><br>
+                    <pre>Preformatted text
+    with    preserved    spacing</pre>
+                    <kbd>Ctrl+C</kbd> to copy<br>
+                    <samp>Command output</samp>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Multimedia -->
+        <section class="section" id="multimedia">
+            <h2>10. Multimedia</h2>
+
+            <h3>Audio (&lt;audio&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;audio controls&gt;
+                    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+                    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+                    Your browser does not support the audio element.
+                    &lt;/audio&gt;
+
+                    &lt;audio controls autoplay loop muted&gt;
+                    &lt;source src="background.mp3" type="audio/mpeg"&gt;
+                    &lt;/audio&gt;
+                </div>
+                <div class="use-case">
+                    <strong>controls:</strong> Shows play/pause controls<br>
+                    <strong>autoplay:</strong> Starts playing automatically<br>
+                    <strong>loop:</strong> Repeats when finished<br>
+                    <strong>muted:</strong> Starts muted
+                </div>
+            </div>
+
+            <h3>Video (&lt;video&gt;)</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;video width="320" height="240" controls&gt;
+                    &lt;source src="movie.mp4" type="video/mp4"&gt;
+                    &lt;source src="movie.ogg" type="video/ogg"&gt;
+                    &lt;track src="subtitles.vtt" kind="subtitles" srclang="en" label="English"&gt;
+                    Your browser does not support the video tag.
+                    &lt;/video&gt;
+
+                    &lt;video poster="thumbnail.jpg" preload="metadata"&gt;
+                    &lt;source src="video.mp4" type="video/mp4"&gt;
+                    &lt;/video&gt;
+                </div>
+                <div class="use-case">
+                    <strong>poster:</strong> Thumbnail image before video loads<br>
+                    <strong>preload:</strong> Controls how much video to preload<br>
+                    <strong>&lt;track&gt;:</strong> Subtitles or captions
+                </div>
+            </div>
+
+            <h3>Embedded Content</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                    width="560" height="315"
+                    frameborder="0"
+                    allowfullscreen&gt;
+                    &lt;/iframe&gt;
+
+                    &lt;embed src="document.pdf" type="application/pdf" width="600" height="400"&gt;
+
+                    &lt;object data="flash-content.swf" type="application/x-shockwave-flash"&gt;
+                    &lt;param name="movie" value="flash-content.swf"&gt;
+                    Alternative content for browsers that don't support Flash.
+                    &lt;/object&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;iframe&gt;:</strong> Embeds another webpage<br>
+                    <strong>&lt;embed&gt;:</strong> Embeds external content<br>
+                    <strong>&lt;object&gt;:</strong> Embeds multimedia objects
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Advanced Features -->
+        <section class="section" id="advanced">
+            <h2>11. Advanced Features</h2>
+
+            <h3>Custom Data Attributes</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;div data-user-id="123" data-role="admin" data-theme="dark"&gt;
+                    Custom data attributes for JavaScript interaction
+                    &lt;/div&gt;
+
+                    &lt;button data-action="delete" data-confirm="Are you sure?"&gt;
+                    Delete Item
+                    &lt;/button&gt;
+                </div>
+                <div class="use-case">
+                    Data attributes store custom data private to the page. Accessible via JavaScript with dataset
+                    property.
+                </div>
+            </div>
+
+            <h3>Microdata</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;div itemscope itemtype="http://schema.org/Person"&gt;
+                    &lt;h1 itemprop="name"&gt;John Doe&lt;/h1&gt;
+                    &lt;p&gt;Email: &lt;span itemprop="email"&gt;john@example.com&lt;/span&gt;&lt;/p&gt;
+                    &lt;p&gt;Phone: &lt;span itemprop="telephone"&gt;+1-555-123-4567&lt;/span&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                </div>
+                <div class="use-case">
+                    Microdata provides machine-readable data for search engines and other tools.
+                </div>
+            </div>
+
+            <h3>Web Components</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;template id="user-card-template"&gt;
+                    &lt;style&gt;
+                    .card { border: 1px solid #ccc; padding: 10px; }
+                    &lt;/style&gt;
+                    &lt;div class="card"&gt;
+                    &lt;h3&gt;&lt;slot name="name"&gt;&lt;/slot&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;slot name="bio"&gt;&lt;/slot&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;/template&gt;
+
+                    &lt;user-card&gt;
+                    &lt;span slot="name"&gt;John Doe&lt;/span&gt;
+                    &lt;span slot="bio"&gt;Web Developer&lt;/span&gt;
+                    &lt;/user-card&gt;
+                </div>
+                <div class="advanced-note">
+                    Templates and slots are part of Web Components specification for creating reusable custom elements.
+                </div>
+            </div>
+
+            <h3>Canvas and SVG</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;!-- Canvas for dynamic graphics --&gt;
+                    &lt;canvas id="myCanvas" width="200" height="100"&gt;
+                    Your browser does not support the canvas element.
+                    &lt;/canvas&gt;
+
+                    &lt;!-- SVG for scalable vector graphics --&gt;
+                    &lt;svg width="200" height="100"&gt;
+                    &lt;circle cx="50" cy="50" r="30" fill="blue" /&gt;
+                    &lt;rect x="100" y="20" width="60" height="60" fill="red" /&gt;
+                    &lt;text x="10" y="90" font-family="Arial" font-size="14"&gt;SVG Text&lt;/text&gt;
+                    &lt;/svg&gt;
+                </div>
+                <div class="use-case">
+                    <strong>&lt;canvas&gt;:</strong> Programmatic drawing with JavaScript<br>
+                    <strong>&lt;svg&gt;:</strong> Declarative vector graphics with XML syntax
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12: Accessibility -->
+        <section class="section" id="accessibility">
+            <h2>12. Accessibility</h2>
+
+            <h3>ARIA Attributes</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;button aria-label="Close dialog" aria-expanded="false"&gt;×&lt;/button&gt;
+
+                    &lt;nav aria-label="Main navigation"&gt;
+                    &lt;ul role="menubar"&gt;
+                    &lt;li role="menuitem"&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li role="menuitem"&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;/nav&gt;
+
+                    &lt;div role="alert" aria-live="polite"&gt;
+                    Form submitted successfully!
+                    &lt;/div&gt;
+
+                    &lt;input type="password" aria-describedby="pwd-help"&gt;
+                    &lt;div id="pwd-help"&gt;Password must be at least 8 characters&lt;/div&gt;
+                </div>
+                <div class="use-case">
+                    <strong>aria-label:</strong> Accessible name for screen readers<br>
+                    <strong>aria-describedby:</strong> References descriptive text<br>
+                    <strong>aria-live:</strong> Announces dynamic content changes
+                </div>
+            </div>
+
+            <h3>Semantic HTML for Accessibility</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;main&gt;
+                    &lt;h1&gt;Page Title&lt;/h1&gt;
+
+                    &lt;nav aria-label="Breadcrumb"&gt;
+                    &lt;ol&gt;
+                    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/products"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                    &lt;li aria-current="page"&gt;Current Page&lt;/li&gt;
+                    &lt;/ol&gt;
+                    &lt;/nav&gt;
+
+                    &lt;section&gt;
+                    &lt;h2&gt;Section Heading&lt;/h2&gt;
+                    &lt;p&gt;Content with proper heading hierarchy&lt;/p&gt;
+                    &lt;/section&gt;
+                    &lt;/main&gt;
+                </div>
+                <div class="use-case">
+                    Proper semantic HTML provides structure that assistive technologies can understand and navigate.
+                </div>
+            </div>
+
+            <h3>Focus Management</h3>
+            <div class="tag-demo">
+                <div class="code-block">
+                    &lt;button tabindex="0"&gt;Focusable button&lt;/button&gt;
+                    &lt;div tabindex="-1"&gt;Programmatically focusable&lt;/div&gt;
+                    &lt;span tabindex="1"&gt;Higher tab order (avoid)&lt;/span&gt;
+
+                    &lt;a href="#content" class="skip-link"&gt;Skip to main content&lt;/a&gt;
+
+                    &lt;button onclick="document.getElementById('dialog').focus()"&gt;
+                    Open Dialog
+                    &lt;/button&gt;
+                </div>
+                <div class="use-case">
+                    <strong>tabindex="0":</strong> Makes element focusable in tab order<br>
+                    <strong>tabindex="-1":</strong> Programmatically focusable only<br>
+                    <strong>Skip links:</strong> Allow keyboard users to bypass navigation
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Quiz Section -->
+        <section class="section">
+            <h2>🎯 Knowledge Check</h2>
+
+            <div class="quiz-box">
+                <h4>Quick Quiz: Test Your HTML Knowledge</h4>
+                <p><strong>Question 1:</strong> Which tag is used for the most important heading?</p>
+                <button onclick="alert('Correct! &lt;h1&gt; is the most important heading tag.')">A) &lt;h1&gt;</button>
+                <button onclick="alert('Incorrect. &lt;h6&gt; is the least important heading.')">B) &lt;h6&gt;</button>
+                <button onclick="alert('Incorrect. &lt;header&gt; is a semantic container.')">C) &lt;header&gt;</button>
+            </div>
+
+            <div class="quiz-box">
+                <h4>Question 2:</h4>
+                <p><strong>Which attribute is essential for images for accessibility?</strong></p>
+                <button onclick="alert('Incorrect. src specifies the image source.')">A) src</button>
+                <button onclick="alert('Correct! alt provides alternative text for screen readers.')">B) alt</button>
+                <button onclick="alert('Incorrect. width specifies image dimensions.')">C) width</button>
+            </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section class="section">
+            <h2>✨ HTML Best Practices</h2>
+
+            <div class="tag-info">
+                <h3>Essential Guidelines:</h3>
+                <ul>
+                    <li><strong>Always use semantic HTML:</strong> Choose tags based on meaning, not appearance</li>
+                    <li><strong>Include alt text for images:</strong> Essential for accessibility</li>
+                    <li><strong>Use proper heading hierarchy:</strong> h1 → h2 → h3, don't skip levels</li>
+                    <li><strong>Validate your HTML:</strong> Use W3C validator to check for errors</li>
+                    <li><strong>Keep it simple:</strong> Use the least complex markup that works</li>
+                    <li><strong>Be consistent:</strong> Maintain consistent coding style</li>
+                    <li><strong>Comment your code:</strong> Especially for complex sections</li>
+                </ul>
+            </div>
+
+            <div class="advanced-note">
+                <h3>Performance Tips:</h3>
+                <ul>
+                    <li>Minimize HTTP requests by combining files</li>
+                    <li>Use appropriate image formats and sizes</li>
+                    <li>Implement lazy loading for images below the fold</li>
+                    <li>Use CDNs for faster content delivery</li>
+                    <li>Minify HTML in production</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="section">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the comprehensive HTML course! You now have knowledge of:</p>
+
+            <div class="interactive-demo">
+                <h3>Your Journey:</h3>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div style="background: #e6fffa; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>Beginner</strong><br>
+                        Basic tags & structure
+                    </div>
+                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>Intermediate</strong><br>
+                        Forms, tables, multimedia
+                    </div>
+                    <div style="background: #fef5e7; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>Advanced</strong><br>
+                        Semantic HTML, accessibility
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-case">
+                <h3>Next Steps:</h3>
+                <ul>
+                    <li>Practice building complete web pages</li>
+                    <li>Learn CSS for styling your HTML</li>
+                    <li>Explore JavaScript for interactivity</li>
+                    <li>Study responsive design principles</li>
+                    <li>Build real projects to solidify your knowledge</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Progress bar animation
+        window.addEventListener('scroll', function () {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
