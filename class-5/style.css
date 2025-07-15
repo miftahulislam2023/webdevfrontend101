@@ -1,0 +1,36 @@
+body {
+    background-color: #B1D4E0;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+    font-size: 16px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.first-para {
+    background-color: blue;
+}
+
+.c {
+    color: aqua;
+}
+
+#c-plus-plus {
+    color: blueviolet;
+}
+
+.submit-btn {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #04AA6D;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5 10;
+    color: #ffffff;
+}
