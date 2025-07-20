@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    color: white;
+}
+
+#footer {
+    background-color: #00216b;
+    height: 250;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 300px;
+}
+
+.footer-heading {
+    color: white;
+    margin-bottom: 20;
+    font-size: 18px;
+    font-weight: semi-bold;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-list-item {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.list-item-text {
+    padding-left: 10px;
+}
+
+#icon-contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
