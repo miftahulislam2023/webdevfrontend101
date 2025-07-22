@@ -1,0 +1,31 @@
+/* bg - 959595
+text-color - 008000 */
+
+body {
+    margin: 0;
+}
+
+.navbar {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.nav-text {
+    color: #008000;
+    text-decoration: none;
+}
+
+.nav-text:hover {
+    color: black;
+}
+
+.header {
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    padding: 5px 200px;
+    justify-content: space-between;
+}
