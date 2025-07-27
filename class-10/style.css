@@ -1,0 +1,61 @@
+/*
+color - A53DFF
+
+*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.navbar {
+    display: flex;
+    list-style-type: none;
+    width: 500px;
+    justify-content: space-around;
+}
+
+.nav-text {
+    text-decoration: none;
+    color: #333333;
+}
+
+.nav-text.active {
+    color: white;
+    background-color: #A53DFF;
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+
+.mc {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #132238;
+}
+
+.avatar {
+    background-color: #A53DFF;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    padding: 20px 40px;
+    background-color: #e1e1e1;
+    color: #424E60;
+    margin: 5px;
+}

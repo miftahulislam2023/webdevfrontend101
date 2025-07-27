@@ -1,0 +1,198 @@
+/* WordPress Heading Styles - জনপ্রিয় ভিডিও */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Main Heading Styles */
+.main-heading {
+    text-align: center;
+    font-size: 52px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 80px 0;
+    position: relative;
+    letter-spacing: -0.5px;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+    line-height: 1.1;
+    animation: modernFloat 6s ease-in-out infinite;
+}
+
+/* Hover Effect */
+.main-heading:hover {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff3838 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateY(-2px) scale(1.02);
+    letter-spacing: 0px;
+    animation-play-state: paused;
+}
+
+/* Top Accent Line */
+.main-heading::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+    transition: all 0.4s ease;
+}
+
+.main-heading:hover::before {
+    width: 100px;
+    background: linear-gradient(90deg, #ff6b6b, #ee5a24, #ff3838);
+    top: -25px;
+}
+
+/* Bottom Accent Line */
+.main-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+    transition: all 0.4s ease;
+}
+
+.main-heading:hover::after {
+    width: 120px;
+    background: linear-gradient(90deg, transparent, #ff6b6b, #ee5a24, #ff3838, transparent);
+    height: 3px;
+    bottom: -25px;
+}
+
+/* Modern Floating Animation */
+@keyframes modernFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotateX(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotateX(1deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1140px) {
+    .main-heading {
+        font-size: 46px;
+        margin: 0 0 70px 0;
+    }
+
+    .main-heading::before {
+        width: 50px;
+        top: -18px;
+    }
+
+    .main-heading:hover::before {
+        width: 85px;
+        top: -22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-heading {
+        font-size: 38px;
+        margin: 0 0 60px 0;
+        letter-spacing: -0.3px;
+    }
+
+    .main-heading::before {
+        width: 40px;
+        height: 3px;
+        top: -15px;
+    }
+
+    .main-heading:hover::before {
+        width: 70px;
+        top: -18px;
+    }
+
+    .main-heading::after {
+        width: 60px;
+        bottom: -15px;
+    }
+
+    .main-heading:hover::after {
+        width: 90px;
+        bottom: -18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-heading {
+        font-size: 32px;
+        margin: 0 0 50px 0;
+        letter-spacing: -0.2px;
+    }
+
+    .main-heading::before {
+        width: 35px;
+        height: 2px;
+        top: -12px;
+    }
+
+    .main-heading:hover::before {
+        width: 60px;
+        top: -15px;
+    }
+
+    .main-heading::after {
+        width: 50px;
+        bottom: -12px;
+    }
+
+    .main-heading:hover::after {
+        width: 75px;
+        bottom: -15px;
+    }
+}
+
+/* WordPress Theme Compatibility */
+.main-heading {
+    /* Override WordPress theme defaults */
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* Ensure proper spacing in WordPress content area */
+.wp-block-heading.main-heading,
+.entry-content .main-heading,
+.post-content .main-heading {
+    margin-bottom: 60px !important;
+}
+
+@media (max-width: 768px) {
+
+    .wp-block-heading.main-heading,
+    .entry-content .main-heading,
+    .post-content .main-heading {
+        margin-bottom: 40px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .wp-block-heading.main-heading,
+    .entry-content .main-heading,
+    .post-content .main-heading {
+        margin-bottom: 30px !important;
+    }
+}
