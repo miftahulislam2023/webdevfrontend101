@@ -1,0 +1,71 @@
+/* .hind-siliguri-light {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.hind-siliguri-regular {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hind-siliguri-medium {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hind-siliguri-semibold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hind-siliguri-bold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+} */
+
+.nav-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 20px 25px;
+    width: 150px;
+    margin: 20px auto;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(71, 85, 105, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.nav-item:hover {
+    color: white;
+    background: linear-gradient(145deg, #1c73ff 0%, #0051ff 50%, #0035c6 100%);
+    /* transform: translate(10px, 0px); */
+    transform: rotate(-2deg) scale(1.2);
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+}
+
+.nav-title {
+    font-family: "Hind Siliguri", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    margin: 5px;
+}
+
+.nav-title:hover {
+    color: white;
+}
