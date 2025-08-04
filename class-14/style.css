@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: beige;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 5px 0px rgba(0,0,0,0.3);
+    padding: 10px;
+    justify-content: space-around;
+    margin: 0 0 10px 0;
+    position: sticky;
+    top: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: brown;
+}
+
+.box-container {
+    margin: 20px;
+    display: flex;
+    border: 5px dotted;
+    padding: 10px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+}
+
+.box1 {
+    background-color: blueviolet;
+    height: 100px;
+    width: 100px;
+    /* position: absolute; */
+    /* top: 40px; */
+    /* position: fixed; */
+}
+
+.box2 {
+    background-color: cadetblue;
+    height: 100px;
+    width: 100px;
+    /* position: relative;
+    left: 30px;
+    top: 30px; */
+}
+
+.box3 {
+    background-color: chocolate;
+    height: 100px;
+    width: 100px;
+}

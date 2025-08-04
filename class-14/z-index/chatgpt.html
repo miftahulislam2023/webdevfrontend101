@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sticky Note Z-Index</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f8f8f8;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .board {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .note {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      background: #fffd82;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .note.active {
+      z-index: 100;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <div class="note" style="top: 50px; left: 50px;">Note 1</div>
+    <div class="note" style="top: 100px; left: 150px;">Note 2</div>
+    <div class="note" style="top: 150px; left: 250px;">Note 3</div>
+  </div>
+
+  <script>
+    const notes = document.querySelectorAll('.note');
+    let z = 1;
+
+    notes.forEach(note => {
+      note.addEventListener('click', () => {
+        notes.forEach(n => n.classList.remove('active'));
+        note.classList.add('active');
+        note.style.zIndex = ++z;
+      });
+    });
+  </script>
+</body>
+</html>

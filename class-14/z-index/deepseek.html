@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <style>
+        .container {
+            position: relative;
+            /* Needed for z-index to work inside */
+            width: 200px;
+            height: 100px;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 255, 0.5);
+            /* Semi-transparent blue */
+            z-index: 1;
+            /* Above the button */
+        }
+
+        .ghost-button {
+            position: relative;
+            /* Must be positioned for z-index to apply */
+            z-index: -1;
+            /* Hidden BELOW the overlay */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="overlay"></div>
+        <button class="ghost-button">Click me if you can!</button>
+    </div>
+</body>
+
+</html>

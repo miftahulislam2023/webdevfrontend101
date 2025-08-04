@@ -1,0 +1,115 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.race-track {
+    height: 80vh;
+    width: 100%;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.ball1 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 50%;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.ball2 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 50%;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: backwards;
+}
+
+.ball3 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 50%;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+
+.ball4 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 50%;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: initial;
+}
+
+.ball5 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 35px;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: unset;
+}
+
+.ball6 {
+    background-color: rgb(255, 0, 0);
+    height: 70px;
+    width: 70px;
+    margin: 10px 0;
+    border-radius: 50%;
+    animation-name: race;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.08, 0.82, 1, 1.75);
+}
+
+@keyframes race {
+    0% {}
+
+    100% {
+        transform: translateX(650px);
+    }
+}
+
+/* animation-name,
+animation-duration,
+animation-timing-function,
+animation-delay,
+animation-iteration-count,
+animation-direction,
+animation-fill-mode,
+animation-play-state,
+animation-timeline. */
+
+@keyframes spin {
+    0% {}
+
+    100% {
+        transform: rotate(45deg);
+    }
+}

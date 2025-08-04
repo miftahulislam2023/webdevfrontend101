@@ -1,0 +1,39 @@
+.box {
+    margin: 200px auto;
+    height: 300px;
+    width: 300px;
+    border-radius: 10%;
+    background-color: brown;
+    animation-name: spin;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    /*subtle*/
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-timeline: ;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+
+/* animation-name,
+animation-duration,
+animation-timing-function,
+animation-delay,
+animation-iteration-count,
+animation-direction,
+animation-fill-mode,
+animation-play-state,
+animation-timeline. */
+
+@keyframes spin {
+    0% {}
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

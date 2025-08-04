@@ -1,0 +1,34 @@
+
+.box-container {
+    margin: 20px;
+    display: flex;
+    border: 5px dotted;
+    padding: 10px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+}
+
+.box1 {
+    background-color: blueviolet;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: -5;
+}
+
+.box2 {
+    background-color: cadetblue;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: -8;
+}
+
+.box3 {
+    background-color: chocolate;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: -7;
+}
