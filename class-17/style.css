@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.colorbox {
+    height: 200px;
+    width: 200px;
+    background-color: chartreuse;
+    /* transition: transform 5s ease-out, background-color 3s ease-in, border-radius 10s ease; */
+    transition: all 0.5s ease;
+}
+
+.colorbox:hover {
+    transform: rotate(45deg);
+    background-color: chocolate;
+    border-radius: 10%;
+}
+
+.btn {
+    border: none;
+    padding: 5px 10px;
+    background-color: chocolate;
+    color: white;
+    font-weight: semi-bold;
+    font-size: 30px;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.btn:hover {
+    background-color: crimson;
+    font-weight: bold;
+    font-size: 36px;
+    border-radius: 5px;
+    transform: rotate(-10deg);
+}

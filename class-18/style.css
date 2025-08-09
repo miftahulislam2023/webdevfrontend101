@@ -1,0 +1,152 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.logo {
+    padding: 20px;
+    background-color: #ccc;
+}
+
+.box-header a {
+    text-decoration: underline;
+    color: black;
+}
+
+.navbar {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 35%;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+/* Search Section */
+
+.box-search {
+    background-color: #ccc;
+    padding: 15px;
+}
+
+.btn-search {
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, .2);
+    color: white;
+    border: none;
+    border-radius: 2px;
+}
+
+/* Categories */
+
+.box-category {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 300px;
+    padding: 15px;
+    column-gap: 10px;
+}
+
+.all-categories {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categories {
+    padding: 10px;
+    border-top: 2px solid #ccc;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 2px solid black;
+}
+
+.image-number-box {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btn-number {
+    padding: 5px 10px;
+}
+
+/* Special Products */
+
+.box-special {
+    padding: 15px;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product a {
+    color: black;
+}
+
+.product img {
+    margin-top: 15px;
+}
+
+/* Footer */
+
+.box-footer {
+    display: flex;
+    border-top: 2px solid black;
+    padding: 15px;
+}
+
+.footer-section-heading {
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.footer-section a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-section {
+    margin-right: 30px;
+}
