@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    margin: 10px;
+    padding: 10px;
+    background-color: chocolate;
+    border: 20px solid #ccc;
+    height: 500px;
+    width: 500px;
+}
+
+/* .box div {
+    height: 200px;
+    width: 200px;
+    background-color: chartreuse;
+} */
+div.child.grandchild {
+    height: 200px;
+    width: 200px;
+    margin-top: 20px;
+    background-color: chartreuse;
+}
+
+/* .child > div {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+} */

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribute Selector</title>
+    <link rel="stylesheet" href="attr.css">
+</head>
+
+<body>
+    <form>
+        <div>
+            <label for="first-name">First name</label>
+            <input type="text" name="first-name">
+        </div>
+        <div>
+            <label for="last-name">Last name</label>
+            <input type="text" name="last-name">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input type="number" name="price">
+        </div>
+
+        <div>
+            <input type="checkbox" id="subscribe" name="subscribe">
+            <label for="subscribe">Subscribe to newsletter</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">I agree to terms and conditions</label>
+        </div>
+        <div>
+            <p>Choose your favorite color:</p>
+            <input type="radio" id="red" name="color" value="red">
+            <label for="red">Red</label>
+
+            <input type="radio" id="blue" name="color" value="blue">
+            <label for="blue">Blue</label>
+
+            <input type="radio" id="green" name="color" value="green">
+            <label for="green">Green</label>
+        </div>
+    </form>
+</body>
+
+</html>
