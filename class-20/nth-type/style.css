@@ -1,0 +1,20 @@
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: chocolate;
+}
+
+input:focus {
+    background-color: aqua;
+}
+
+button:hover {
+    background-color: brown;
+}
+
+button:active {
+    background-color: black;
+    color: wheat;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Element</title>
+    <style>
+        p::after {
+            content: ' mother.';
+            color: red;
+        }
+
+        /* p::before {
+            content: url(../../class-18/layout.jpg);
+            height: 100px;
+            width: 100px;
+        } */
+        a {
+            font-size: 36px;
+        }
+
+        @media print {
+            a::after {
+                content: " (" attr(href) ")";
+                /* লিঙ্কের href ভ্যালু যোগ হবে */
+                font-size: 0.9em;
+                color: gray;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>I love my</p>
+    <a href="miftahcoding.com">Click here</a>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+/* li:first-child {
+    color: red;
+    background-color: black;
+}
+
+li:last-child {
+    color: red;
+    background-color: black;
+}
+
+li:nth-child(3) {
+    color: red;
+    background-color: black;
+}
+li:nth-last-child(4) {
+    color: red;
+    background-color: black;
+} */
+/* 
+li:nth-of-type(5) {
+    color: red;
+    background-color: black;
+} */
+
+p:nth-child(2) {
+    color: red;
+    background-color: black;
+}
