@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digital Services - Pricing</title>
+    <style>
+        :root {
+            --primary-color: #044CAC;
+            --secondary-color: #044CAC;
+            --accent-color: #FB3433;
+            --dark-color: #2d3748;
+            --light-color: #f8f9fa;
+            --success-color: #48bb78;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            padding-left: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 15px rgba(4, 76, 172, 0.2);
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .service-category {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .category-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .category-header .toggle-icon {
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .category-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .service-items {
+            display: none;
+            padding: 0;
+        }
+
+        .service-category.active .service-items {
+            display: block;
+        }
+
+        .service-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .service-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .service-name h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .service-price {
+            background-color: #e6f7ff;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .service-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-features {
+            list-style-type: none;
+            margin-top: 0.5rem;
+        }
+
+        .service-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .contact-btn:hover {
+            background-color: #033b8a;
+            transform: translateY(-2px);
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background-color: rgba(251, 52, 51, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .service-name {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .service-price {
+                margin-top: 0.5rem;
+                align-self: flex-start;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-category {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .service-category:nth-child(1) { animation-delay: 0.1s; }
+        .service-category:nth-child(2) { animation-delay: 0.2s; }
+        .service-category:nth-child(3) { animation-delay: 0.3s; }
+        .service-category:nth-child(4) { animation-delay: 0.4s; }
+        .service-category:nth-child(5) { animation-delay: 0.5s; }
+        .service-category:nth-child(6) { animation-delay: 0.6s; }
+        .service-category:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <div class="header">
+            <h1>AI-Powered Digital Services</h1>
+            <p>Transforming businesses with cutting-edge AI solutions. Explore our comprehensive service packages tailored for your digital growth.</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Services</button>
+            <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
+            <button class="filter-btn" data-filter="development">Web Development</button>
+            <button class="filter-btn" data-filter="seo">SEO Services</button>
+            <button class="filter-btn" data-filter="training">IT Training</button>
+            <button class="filter-btn" data-filter="design">Design Services</button>
+            <button class="filter-btn" data-filter="security">Cybersecurity</button>
+            <button class="filter-btn" data-filter="software">Software Solutions</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search services..." id="service-search">
+        </div>
+
+        <div class="service-category active" data-category="marketing">
+            <div class="category-header">
+                <h2>1. Digital Marketing Services (AI-Driven)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Social Media Management <span class="ai-badge">AI-Powered</span></h3>
+                        <span class="service-price">₹5000-20000/month</span>
+                    </div>
+                    <div class="service-description">Complete management of your social media presence with AI optimization</div>
+                    <ul class="service-features">
+                        <li>Facebook & Instagram Page Management</li>
+                        <li>All Social Channel Management</li>
+                        <li>WhatsApp Channel & Telegram Community Management</li>
+                        <li>AI-Enhanced Content Scheduling & Engagement</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Ads Management <span class="ai-badge">AI-Optimized</span></h3>
+                        <span class="service-price">10% of Ads Budget</span>
+                    </div>
+                    <div class="service-description">Maximize your ad ROI with our AI-driven campaign management</div>
+                    <ul class="service-features">
+                        <li>Facebook Ads</li>
+                        <li>Instagram Ads</li>
+                        <li>Google Ads (Search, Display, Video)</li>
+                        <li>AI-Based Ad Targeting & A/B Testing</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>SEO Services <span class="ai-badge">AI-Assisted</span></h3>
+                        <span class="service-price">Custom Pricing</span>
+                    </div>
+                    <div class="service-description">Comprehensive search engine optimization powered by AI insights</div>
+                    <ul class="service-features">
+                        <li>Local SEO (Maps, Listings)</li>
+                        <li>National/Advanced SEO</li>
+                        <li>AI-Powered Keyword Research & Optimization</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Content Marketing <span class="ai-badge">AI + Human</span></h3>
+                        <span class="service-price">₹7000-20000/month</span>
+                    </div>
+                    <div class="service-description">Strategic content that combines AI efficiency with human creativity</div>
+                    <ul class="service-features">
+                        <li>Blog Writing & Optimization</li>
+                        <li>AI-Assisted Copywriting (Sales Copies, Ad Copies, Captions)</li>
+                        <li>Content Strategy Planning with AI Insights</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Email Marketing <span class="ai-badge">AI-Enhanced</span></h3>
+                        <span class="service-price">₹5000-12000/month</span>
+                    </div>
+                    <div class="service-description">Automated email campaigns with personalized touch</div>
+                    <ul class="service-features">
+                        <li>Automated Email Campaigns</li>
+                        <li>AI-Based Personalization & Segmentation</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="development">
+            <div class="category-header">
+                <h2>2. Website Development (AI-Enhanced Solutions)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Business Websites</h3>
+                        <span class="service-price">₹5000-20000/one time</span>
+                    </div>
+                    <div class="service-description">Professional websites to establish your online presence</div>
+                    <ul class="service-features">
+                        <li>Basic Business Website (Up to 5 Pages)</li>
+                        <li>Corporate/Custom Business Website</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>E-commerce Websites <span class="ai-badge">AI-Integrated</span></h3>
+                        <span class="service-price">₹10000-30000/one time</span>
+                    </div>
+                    <div class="service-description">Powerful online stores with AI enhancements</div>
+                    <ul class="service-features">
+                        <li>Online Store Setup</li>
+                        <li>AI Product Recommendation Engine</li>
+                        <li>AI Chatbot Integration for Customer Support</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Landing Pages</h3>
+                        <span class="service-price">₹5000-15000/one time</span>
+                    </div>
+                    <div class="service-description">High-converting landing pages with analytics</div>
+                    <ul class="service-features">
+                        <li>Conversion-Focused Landing Page</li>
+                        <li>AI-based Heatmap Analysis</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Website Maintenance <span class="ai-badge">AI Monitoring</span></h3>
+                        <span class="service-price">₹3000-15000/month</span>
+                    </div>
+                    <div class="service-description">Keep your website secure and up-to-date</div>
+                    <ul class="service-features">
+                        <li>Monthly Updates & Security Patches</li>
+                        <li>AI Analytics Dashboard Integration</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="seo">
+            <div class="category-header">
+                <h2>3. SEO Services (AI-Boosted SEO)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>On-Page SEO <span class="ai-badge">AI Analysis</span></h3>
+                        <span class="service-price">₹5000-12000/one time</span>
+                    </div>
+                    <div class="service-description">Optimize your website content for better rankings</div>
+                    <ul class="service-features">
+                        <li>Content Optimization</li>
+                        <li>Meta & Schema Setup</li>
+                        <li>AI Content Scoring & Suggestions</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Off-Page SEO <span class="ai-badge">AI-Driven</span></h3>
+                        <span class="service-price">₹5000-20000/month</span>
+                    </div>
+                    <div class="service-description">Build authoritative backlinks with AI assistance</div>
+                    <ul class="service-features">
+                        <li>Backlink Research with AI Tools</li>
+                        <li>Outreach & Authority Growth</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Technical SEO Audit <span class="ai-badge">AI-Powered</span></h3>
+                        <span class="service-price">₹5000-20000/one time</span>
+                    </div>
+                    <div class="service-description">Comprehensive technical analysis of your website</div>
+                    <ul class="service-features">
+                        <li>Site Speed Optimization</li>
+                        <li>AI-Powered Audit Reports</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Full SEO Package <span class="ai-badge">AI + Human</span></h3>
+                        <span class="service-price">₹10000-40000/month</span>
+                    </div>
+                    <div class="service-description">Complete SEO solution for maximum visibility</div>
+                    <ul class="service-features">
+                        <li>Holistic SEO (On-Page + Off-Page + Technical)</li>
+                        <li>AI Competitor Analysis</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="training">
+            <div class="category-header">
+                <h2>4. IT Consulting & Training (AI & Digital Transformation)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>IT Strategy Consultation <span class="ai-badge">AI-Driven</span></h3>
+                        <span class="service-price">₹2000-10000/session</span>
+                    </div>
+                    <div class="service-description">Plan your digital transformation with expert guidance</div>
+                    <ul class="service-features">
+                        <li>AI-Driven Planning</li>
+                        <li>Digital Roadmap Creation</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Digital Marketing Training <span class="ai-badge">AI Tools</span></h3>
+                        <span class="service-price">₹3000-10000/course</span>
+                    </div>
+                    <div class="service-description">Master digital marketing with cutting-edge AI tools</div>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>SEO Training <span class="ai-badge">AI-Powered</span></h3>
+                        <span class="service-price">₹3000-10000/course</span>
+                    </div>
+                    <div class="service-description">Learn advanced SEO techniques powered by AI</div>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Cybersecurity Training <span class="ai-badge">AI Tools</span></h3>
+                        <span class="service-price">₹5000-15000/course</span>
+                    </div>
+                    <div class="service-description">Protect your business with AI threat detection knowledge</div>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>AI Training <span class="ai-badge">Latest Tech</span></h3>
+                        <span class="service-price">₹5000-15000/course</span>
+                    </div>
+                    <div class="service-description">Learn prompt engineering and automation with AI</div>
+                    <ul class="service-features">
+                        <li>Prompt Engineering</li>
+                        <li>Business Automation</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="design">
+            <div class="category-header">
+                <h2>5. Content Designing & Creative Services (AI-Assisted Design)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Static Designs</h3>
+                        <span class="service-price">From ₹200/design</span>
+                    </div>
+                    <div class="service-description">Eye-catching visual content for your brand</div>
+                    <ul class="service-features">
+                        <li>Social Media Post (Static Image) - ₹300/image</li>
+                        <li>Carousel Post (Multiple Slides) - ₹300/design</li>
+                        <li>YouTube Thumbnail Design - ₹200/design</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Branding & Identity <span class="ai-badge">AI Concepts</span></h3>
+                        <span class="service-price">From ₹300/design</span>
+                    </div>
+                    <div class="service-description">Create a memorable brand identity</div>
+                    <ul class="service-features">
+                        <li>Logo Design (AI-Generated Concepts + Designer Refinement) - ₹300/design</li>
+                        <li>Brand Identity Package (Logo + 5 Posts + Cover) - ₹1000</li>
+                        <li>Business Card Design - ₹300/design</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Marketing Collateral</h3>
+                        <span class="service-price">₹300/design</span>
+                    </div>
+                    <div class="service-description">Professional marketing materials for your business</div>
+                    <ul class="service-features">
+                        <li>Flyer / Poster / Banner Design</li>
+                        <li>Brochure / Catalog Design</li>
+                        <li>Infographic Design</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Motion & Advanced Design</h3>
+                        <span class="service-price">From ₹600/video</span>
+                    </div>
+                    <div class="service-description">Engaging motion graphics and UI/UX designs</div>
+                    <ul class="service-features">
+                        <li>Motion Graphics (Short Video/Ad – 1 Minute) - ₹600/video</li>
+                        <li>UI/UX Design (Website/App) - ₹5000-30000</li>
+                        <li>Complete Social Media Kit (30 Posts + Covers + Profile Image) - ₹8000</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="security">
+            <div class="category-header">
+                <h2>6. Cybersecurity Services (AI-Enhanced Security)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Website Security Setup</h3>
+                        <span class="service-price">₹5000-15000</span>
+                    </div>
+                    <div class="service-description">Protect your website from threats</div>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Penetration Testing <span class="ai-badge">AI Simulation</span></h3>
+                        <span class="service-price">₹10000-30000</span>
+                    </div>
+                    <div class="service-description">Identify vulnerabilities before attackers do</div>
+                    <ul class="service-features">
+                        <li>AI Threat Simulation</li>
+                        <li>Comprehensive Security Report</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Malware Detection & Removal <span class="ai-badge">AI-Based</span></h3>
+                        <span class="service-price">₹5000-15000</span>
+                    </div>
+                    <div class="service-description">Clean and secure your infected systems</div>
+                    <ul class="service-features">
+                        <li>AI-Based Monitoring</li>
+                        <li>Real-time Protection</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>AI Security Integrations</h3>
+                        <span class="service-price">₹5000-15000</span>
+                    </div>
+                    <div class="service-description">Advanced security with AI capabilities</div>
+                    <ul class="service-features">
+                        <li>Real-Time AI Threat Detection</li>
+                        <li>AI Fraud & Phishing Protection</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-category" data-category="software">
+            <div class="category-header">
+                <h2>7. Software Solutions (AI-Integrated Development)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Custom Software Development</h3>
+                        <span class="service-price">₹50000-200000</span>
+                    </div>
+                    <div class="service-description">Tailored solutions for your business needs</div>
+                    <ul class="service-features">
+                        <li>ERP & Business Management Systems</li>
+                        <li>School/Coaching Management Software</li>
+                        <li>Hospital/Clinic Management Software</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>AI-Powered Applications</h3>
+                        <span class="service-price">₹15000-50000</span>
+                    </div>
+                    <div class="service-description">Intelligent applications to automate your business</div>
+                    <ul class="service-features">
+                        <li>AI Chatbots for Customer Support</li>
+                        <li>AI Virtual Assistants (Business Automation)</li>
+                        <li>AI Recommendation & Personalization Systems</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>Mobile App Development <span class="ai-badge">AI Features</span></h3>
+                        <span class="service-price">₹20000-200000</span>
+                    </div>
+                    <div class="service-description">Cross-platform mobile apps with AI capabilities</div>
+                    <ul class="service-features">
+                        <li>Android & iOS Apps</li>
+                        <li>AI-Powered Learning/Training Apps</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">
+                        <h3>SaaS Products & Automation</h3>
+                        <span class="service-price">₹50000-400000</span>
+                    </div>
+                    <div class="service-description">Scalable software solutions for modern businesses</div>
+                    <ul class="service-features">
+                        <li>CRM with AI Lead Scoring</li>
+                        <li>Workflow Automation Tools</li>
+                        <li>AI Data Analytics Dashboards</li>
+                    </ul>
+                    <button class="contact-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // The JavaScript remains exactly the same as in the previous version
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle service categories
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const category = header.parentElement;
+                    category.classList.toggle('active');
+                });
+            });
+
+            // Filter services
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.dataset.filter;
+                    const categories = document.querySelectorAll('.service-category');
+                    
+                    categories.forEach(category => {
+                        if (filter === 'all' || category.dataset.category === filter) {
+                            category.style.display = 'block';
+                            // Add slight delay for animation
+                            setTimeout(() => {
+                                category.style.opacity = '1';
+                                category.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            category.style.display = 'none';
+                            category.style.opacity = '0';
+                            category.style.transform = 'translateY(20px)';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('service-search');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const serviceItems = document.querySelectorAll('.service-item');
+                
+                serviceItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        // Highlight the parent category
+                        const category = item.closest('.service-category');
+                        category.style.display = 'block';
+                        category.classList.add('active');
+                        // Ensure service items are visible
+                        const serviceItemsContainer = item.closest('.service-items');
+                        serviceItemsContainer.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+
+            // Smooth scroll for better UX
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Contact button functionality
+            document.querySelectorAll('.contact-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // In a real WordPress site, this would link to your contact form
+                    alert('Thank you for your interest! You would now be redirected to our contact form.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

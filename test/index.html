@@ -1,125 +1,670 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="ai-services-container">
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All Services</button>
+    <button class="filter-btn" data-filter="marketing">Marketing</button>
+    <button class="filter-btn" data-filter="development">Development</button>
+    <button class="filter-btn" data-filter="seo">SEO</button>
+    <button class="filter-btn" data-filter="training">Training</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+    <button class="filter-btn" data-filter="security">Security</button>
+    <button class="filter-btn" data-filter="software">Software</button>
+  </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Learning Portal</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Modern Islamic learning portal with beautiful navigation">
-</head>
+  <div class="search-box">
+    <input type="text" placeholder="Search services..." id="service-search">
+  </div>
 
-<body>
-    <div class="container">
-        <h1 class="main-heading">
-            <svg class="quran-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 8h32c2.21 0 4 1.79 4 4v40c0 2.21-1.79 4-4 4H16c-2.21 0-4-1.79-4-4V12c0-2.21 1.79-4 4-4z"
-                    fill="currentColor" opacity="0.1" />
-                <path d="M18 12h28c1.1 0 2 0.9 2 2v36c0 1.1-0.9 2-2 2H18c-1.1 0-2-0.9-2-2V14c0-1.1 0.9-2 2-2z"
-                    fill="currentColor" opacity="0.2" />
-                <path d="M32 20c-3.31 0-6 2.69-6 6 0 2.21 1.79 4 4 4h4c2.21 0 4-1.79 4-4 0-3.31-2.69-6-6-6z"
-                    fill="currentColor" />
-                <path d="M24 34h16M24 38h16M24 42h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <circle cx="32" cy="26" r="2" fill="white" />
-                <path d="M30 24l2 2 2-2" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            ইসলামিক শিক্ষা পোর্টাল
-        </h1>
+  <div class="services-grid">
+    <!-- Digital Marketing Services -->
+    <div class="service-category active" data-category="marketing">
+      <div class="category-header">
+        <h2 class="services-header">Digital Marketing Services</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Social Media Management <span class="ai-badge">AI-Powered</span></h3>
+            <span class="service-price">৳5000-20000/month</span>
+          </div>
+          <div class="service-description">Complete AI-optimized management of your social media presence across all
+            platforms.</div>
+          <ul class="service-features">
+            <li>Facebook & Instagram Page Management</li>
+            <li>Multi-platform Social Channel Management</li>
+            <li>WhatsApp & Telegram Community Management</li>
+            <li>AI-Enhanced Content Scheduling</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
 
-        <h1 class="main-heading">
-            <svg class="quran-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <!-- Beautiful Book/Course Icon -->
-                <defs>
-                    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path d="M14 8h36c3 0 5 2 5 5v38c0 3-2 5-5 5H14c-3 0-5-2-5-5V13c0-3 2-5 5-5z" fill="url(#bookGradient)"
-                    opacity="0.8" />
-                <path d="M18 12h28c2 0 3 1 3 3v34c0 2-1 3-3 3H18c-2 0-3-1-3-3V15c0-2 1-3 3-3z" fill="currentColor"
-                    opacity="0.1" />
-                <rect x="22" y="18" width="20" height="3" rx="1.5" fill="white" opacity="0.9" />
-                <rect x="22" y="25" width="18" height="2" rx="1" fill="white" opacity="0.7" />
-                <rect x="22" y="30" width="16" height="2" rx="1" fill="white" opacity="0.7" />
-                <rect x="22" y="35" width="14" height="2" rx="1" fill="white" opacity="0.7" />
-                <circle cx="50" cy="18" r="6" fill="#ff6b6b" />
-                <path d="M47 16l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            জনপ্রিয় কোর্স
-        </h1>
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Ads Management <span class="ai-badge">AI-Optimized</span></h3>
+            <span class="service-price">10% of Ads Budget</span>
+          </div>
+          <div class="service-description">Maximize your advertising ROI with our AI-driven campaign optimization.</div>
+          <ul class="service-features">
+            <li>Facebook & Instagram Ads</li>
+            <li>Google Ads (Search, Display, Video)</li>
+            <li>AI-Based Targeting & A/B Testing</li>
+            <li>Performance Analytics Dashboard</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
 
-        <h1 class="main-heading">
-            <svg class="quran-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <!-- Beautiful Video Play Icon -->
-                <defs>
-                    <linearGradient id="videoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#ffa726;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <rect x="8" y="14" width="48" height="32" rx="6" fill="url(#videoGradient)" opacity="0.9" />
-                <rect x="12" y="18" width="40" height="24" rx="4" fill="currentColor" opacity="0.1" />
-                <circle cx="32" cy="30" r="10" fill="white" opacity="0.95" />
-                <path d="M28 25l12 5-12 5V25z" fill="url(#videoGradient)" />
-                <circle cx="50" cy="20" r="6" fill="#4caf50" />
-                <path d="M47 18l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            জনপ্রিয় ভিডিও
-        </h1>
-
-        <h1 class="main-heading">
-            <svg class="quran-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <!-- Beautiful Blog/Article Icon -->
-                <defs>
-                    <linearGradient id="blogGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path d="M16 8h32c3 0 5 2 5 5v38c0 3-2 5-5 5H16c-3 0-5-2-5-5V13c0-3 2-5 5-5z" fill="url(#blogGradient)"
-                    opacity="0.9" />
-                <path d="M20 12h24c2 0 3 1 3 3v34c0 2-1 3-3 3H20c-2 0-3-1-3-3V15c0-2 1-3 3-3z" fill="currentColor"
-                    opacity="0.1" />
-                <rect x="24" y="18" width="16" height="2" rx="1" fill="white" opacity="0.9" />
-                <rect x="24" y="23" width="14" height="1.5" rx="0.75" fill="white" opacity="0.7" />
-                <rect x="24" y="27" width="12" height="1.5" rx="0.75" fill="white" opacity="0.7" />
-                <rect x="24" y="31" width="10" height="1.5" rx="0.75" fill="white" opacity="0.7" />
-                <rect x="24" y="35" width="8" height="1.5" rx="0.75" fill="white" opacity="0.7" />
-                <circle cx="50" cy="18" r="6" fill="#ff9800" />
-                <path d="M47.5 15.5l1.5 3 3.5 0.5-2.5 2.5 0.5 3.5-3-1.5-3 1.5 0.5-3.5-2.5-2.5 3.5-0.5z" fill="white" />
-            </svg>
-            জনপ্রিয় ব্লগ
-        </h1>
-
-        <h1 class="main-heading">
-            <svg class="quran-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <!-- Beautiful Comment/Review Icon -->
-                <defs>
-                    <linearGradient id="commentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path d="M10 16h36c4 0 7 3 7 7v18c0 4-3 7-7 7H22l-8 8V23c0-4 3-7 7-7z" fill="url(#commentGradient)"
-                    opacity="0.9" />
-                <path d="M14 20h28c2 0 4 2 4 4v14c0 2-2 4-4 4H20l-6 6V24c0-2 2-4 4-4z" fill="currentColor"
-                    opacity="0.1" />
-                <rect x="18" y="26" width="16" height="2" rx="1" fill="white" opacity="0.9" />
-                <rect x="18" y="31" width="12" height="1.5" rx="0.75" fill="white" opacity="0.7" />
-                <circle cx="20" cy="12" r="3" fill="white" opacity="0.8" />
-                <circle cx="32" cy="12" r="3" fill="white" opacity="0.8" />
-                <circle cx="44" cy="12" r="3" fill="white" opacity="0.8" />
-                <circle cx="52" cy="18" r="6" fill="#e91e63" />
-                <path d="M49 16l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            শিক্ষার্থীদের মন্তব্য
-        </h1>
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Content Marketing <span class="ai-badge">AI + Human</span></h3>
+            <span class="service-price">৳7000-20000/month</span>
+          </div>
+          <div class="service-description">Strategic content that combines AI efficiency with human creativity.</div>
+          <ul class="service-features">
+            <li>Blog Writing & Optimization</li>
+            <li>AI-Assisted Copywriting</li>
+            <li>Content Strategy Planning</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
     </div>
-</body>
 
-</html>
+    <!-- Website Development -->
+    <div class="service-category" data-category="development">
+      <div class="category-header">
+        <h2 class="services-header">Website Development</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Business Websites</h3>
+            <span class="service-price">৳5000-20000</span>
+          </div>
+          <div class="service-description">Professional, responsive websites to establish your online presence.</div>
+          <ul class="service-features">
+            <li>Basic Website (Up to 5 Pages)</li>
+            <li>Corporate/Custom Website</li>
+            <li>Mobile-Optimized Design</li>
+            <li>SEO-Friendly Structure</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+
+        <div class="service-item">
+          <div class="service-name">
+            <h3>E-commerce Solutions <span class="ai-badge">AI Integrated</span></h3>
+            <span class="service-price">৳10000-30000</span>
+          </div>
+          <div class="service-description">Powerful online stores with AI enhancements to boost sales.</div>
+          <ul class="service-features">
+            <li>Complete Online Store Setup</li>
+            <li>AI Product Recommendation Engine</li>
+            <li>Customer Support Chatbot</li>
+            <li>Payment Gateway Integration</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Services -->
+    <div class="service-category" data-category="seo">
+      <div class="category-header">
+        <h2 class="services-header">SEO Services</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Comprehensive SEO <span class="ai-badge">AI Boosted</span></h3>
+            <span class="service-price">৳10000-40000/month</span>
+          </div>
+          <div class="service-description">End-to-end SEO solution powered by AI for maximum visibility.</div>
+          <ul class="service-features">
+            <li>On-Page & Technical SEO</li>
+            <li>AI-Powered Keyword Research</li>
+            <li>Competitor Analysis</li>
+            <li>Monthly Performance Reports</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT Training -->
+    <div class="service-category" data-category="training">
+      <div class="category-header">
+        <h2 class="services-header">IT Training</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>AI Training <span class="ai-badge">Cutting Edge</span></h3>
+            <span class="service-price">৳5000-15000/course</span>
+          </div>
+          <div class="service-description">Master AI tools and techniques for business automation.</div>
+          <ul class="service-features">
+            <li>Prompt Engineering</li>
+            <li>Workflow Automation</li>
+            <li>AI Content Creation</li>
+            <li>Practical Business Applications</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Services -->
+    <div class="service-category" data-category="design">
+      <div class="category-header">
+        <h2 class="services-header">Design Services</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Branding Package <span class="ai-badge">AI Concepts</span></h3>
+            <span class="service-price">৳1000-5000</span>
+          </div>
+          <div class="service-description">Complete visual identity for your business.</div>
+          <ul class="service-features">
+            <li>Logo Design with AI Concepts</li>
+            <li>Brand Guidelines</li>
+            <li>Social Media Kit</li>
+            <li>Business Card Design</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cybersecurity -->
+    <div class="service-category" data-category="security">
+      <div class="category-header">
+        <h2 class="services-header">Cybersecurity</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Security Solutions <span class="ai-badge">AI Enhanced</span></h3>
+            <span class="service-price">৳5000-30000</span>
+          </div>
+          <div class="service-description">Protect your digital assets with advanced security measures.</div>
+          <ul class="service-features">
+            <li>Website Security Setup</li>
+            <li>AI Threat Detection</li>
+            <li>Malware Protection</li>
+            <li>Security Awareness Training</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Software Solutions -->
+    <div class="service-category" data-category="software">
+      <div class="category-header">
+        <h2 class="services-header">Software Solutions</h2>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="service-items">
+        <div class="service-item">
+          <div class="service-name">
+            <h3>Custom Software <span class="ai-badge">Tailored</span></h3>
+            <span class="service-price">৳50000-200000</span>
+          </div>
+          <div class="service-description">Bespoke solutions designed for your specific business needs.</div>
+          <ul class="service-features">
+            <li>Business Management Systems</li>
+            <li>School/Hospital Management</li>
+            <li>Inventory & POS Systems</li>
+            <li>Custom CRM Solutions</li>
+          </ul>
+          <a href="https://wa.me/+8801302040743">
+            <button class="contact-btn">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ai-services-container {
+    margin: 0 auto;
+    padding: 2rem 250px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0d111c;
+    color: #e0e6f7;
+  }
+
+  @media (max-width: 1024px) {
+    .ai-services-container {
+      margin: 0 auto;
+      padding: 2rem 50px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0d111c;
+      color: #e0e6f7;
+    }
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.8rem 1.8rem;
+    background: #1e2438;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: #a1a8c0;
+    font-size: 0.95rem;
+  }
+
+  .filter-btn:hover {
+    background: rgba(251, 52, 51, 1);
+    color: #f0f4ff;
+
+    border-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: #044CAC;
+    color: white;
+    border-color: #044CAC;
+    box-shadow: 0 4px 15px rgba(4, 76, 172, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active:hover {
+    background: rgba(251, 52, 51, 1);
+    color: #f0f4ff;
+    border-color: rgba(255, 255, 255, 1);
+  }
+
+  .search-box {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    position: relative;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 1.1rem 1.8rem 1.1rem 3.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+    background: #1e2438;
+    color: #f0f4ff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .search-box input::placeholder {
+    color: #a1a8c0;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: #044CAC;
+    box-shadow: 0 0 0 2px rgba(4, 76, 172, 0.3);
+  }
+
+  .search-box::before {
+    content: "🔍";
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #a1a8c0;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-category {
+    background: linear-gradient(145deg, #1a2135 0%, #121826 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .service-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(4, 76, 172, 0.3);
+  }
+
+  .category-header {
+    background: linear-gradient(90deg, #044CAC, #3a6fc9);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .category-header:hover {
+    background: linear-gradient(90deg, #FB3433, #ff4444);
+  }
+
+  .category-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .category-header .toggle-icon {
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+  }
+
+  .category-header.active .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .services-header {
+    color: white;
+  }
+
+  .service-items {
+    display: none;
+    padding: 0;
+  }
+
+  .service-category.active .service-items {
+    display: block;
+  }
+
+  .service-item {
+    padding: 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+  }
+
+  .service-item:last-child {
+    border-bottom: none;
+  }
+
+  .service-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .service-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .service-name h3 {
+    font-size: 1.15rem;
+    color: #f0f4ff;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .service-price {
+    background: rgba(4, 76, 172, 0.15);
+    color: #3a6fc9;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    border: 1px solid rgba(4, 76, 172, 0.3);
+  }
+
+  .service-description {
+    color: #a1a8c0;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .service-features {
+    list-style-type: none;
+    margin: 1.2rem 0 0;
+  }
+
+  .service-features li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: #e0e6f7;
+    line-height: 1.6;
+  }
+
+  .service-features li:before {
+    content: "•";
+    position: absolute;
+    left: 0.5rem;
+    color: #3a6fc9;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.2rem;
+    padding: 0.8rem 1.8rem;
+    background: #044CAC;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(4, 76, 172, 0.3);
+  }
+
+  .contact-btn:hover {
+    background: rgba(251, 52, 51, 1);
+    color: #f0f4ff;
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 76, 172, 0.4);
+  }
+
+  .ai-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(251, 52, 51, 0.1);
+    color: #ff6b6b;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    border: 1px solid rgba(251, 52, 51, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulseGlow 2s infinite;
+  }
+
+  .ai-badge::before {
+    content: "⚡";
+    margin-right: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 0 0 rgba(251, 52, 51, 0.4);
+    }
+
+    70% {
+      box-shadow: 0 0 0 6px rgba(251, 52, 51, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(251, 52, 51, 0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-name {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .service-price {
+      margin-top: 0.5rem;
+      align-self: flex-start;
+    }
+
+    .filter-buttons {
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ai-services-container {
+      padding: 1.5rem 1rem;
+    }
+
+    .category-header {
+      padding: 1.2rem;
+    }
+
+    .category-header h2 {
+      font-size: 1.2rem;
+    }
+
+    .service-item {
+      padding: 1.2rem;
+    }
+
+    .search-box input {
+      padding: 1rem 1.5rem 1rem 3rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Toggle service categories
+    document.querySelectorAll('.category-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const category = header.parentElement;
+        category.classList.toggle('active');
+      });
+    });
+
+    // Filter services
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.service-category').forEach(category => {
+          if (filter === 'all' || category.dataset.category === filter) {
+            category.style.display = 'block';
+            setTimeout(() => {
+              category.style.opacity = '1';
+              category.style.transform = 'translateY(0)';
+            }, 100);
+          } else {
+            category.style.display = 'none';
+            category.style.opacity = '0';
+            category.style.transform = 'translateY(20px)';
+          }
+        });
+      });
+    });
+
+    // Search functionality
+    document.getElementById('service-search').addEventListener('input', function () {
+      const searchTerm = this.value.toLowerCase();
+      let hasResults = false;
+
+      document.querySelectorAll('.service-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+          hasResults = true;
+          const category = item.closest('.service-category');
+          category.style.display = 'block';
+          category.classList.add('active');
+          item.closest('.service-items').style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      const noResults = document.querySelector('.no-results');
+      if (!hasResults && searchTerm.length > 0) {
+        if (!noResults) {
+          const message = document.createElement('div');
+          message.className = 'no-results';
+          message.textContent = 'No services found matching your search.';
+          message.style.textAlign = 'center';
+          message.style.padding = '2rem';
+          message.style.color = '#a1a8c0';
+          document.querySelector('.services-grid').appendChild(message);
+        }
+      } else if (noResults) {
+        noResults.remove();
+      }
+    });
+
+    // Contact button functionality
+    document.querySelectorAll('.contact-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        const serviceName = this.closest('.service-item').querySelector('h3').textContent;
+        alert(`Interested in ${serviceName}? You would now be redirected to our contact form.`);
+      });
+    });
+  });
+</script>
