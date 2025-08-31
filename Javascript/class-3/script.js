@@ -54,7 +54,6 @@
 // console.log(bigx3)
 // console.log(typeof true)
 
-
 /*
 Primitive Type
 - number
@@ -75,7 +74,6 @@ Reference Type
 - function
 - Array
 */
-
 
 // Dynamic Type vs Static Type: Declaration
 // JS - dynamically-typed language
