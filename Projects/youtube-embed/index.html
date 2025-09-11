@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom YouTube Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .custom-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover .custom-controls {
+            transform: translateY(0);
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .play-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        .time-display {
+            font-size: 14px;
+            color: #ccc;
+            min-width: 100px;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #ff6b6b;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .fullscreen-btn,
+        .settings-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .fullscreen-btn:hover,
+        .settings-btn:hover,
+        .volume-btn:hover {
+            opacity: 1;
+        }
+
+        .video-title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 640px) {
+            .controls-row {
+                gap: 10px;
+            }
+
+            .time-display {
+                font-size: 12px;
+                min-width: 80px;
+            }
+
+            .play-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container" id="videoContainer">
+        <div class="video-wrapper">
+            <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+            <iframe id="youtube-player"
+                src="https://www.youtube.com/embed/ln24y0FPJHo?enablejsapi=1&modestbranding=1&showinfo=0&rel=0&controls=0&disablekb=1&fs=0&cc_load_policy=0&iv_load_policy=3&autohide=1&start=0"
+                allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Custom branding overlay -->
+        <div class="video-title">Your Custom Video Title</div>
+        <div class="brand-logo">YOUR BRAND</div>
+
+        <!-- Custom controls -->
+        <div class="custom-controls">
+            <div class="controls-row">
+                <button class="play-btn" id="playBtn">▶</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+            </div>
+            <div class="controls-row">
+                <div class="volume-container">
+                    <button class="volume-btn" id="volumeBtn">🔊</button>
+                </div>
+                <div style="flex: 1;"></div>
+                <button class="settings-btn">⚙️</button>
+                <button class="fullscreen-btn" id="fullscreenBtn">⛶</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // YouTube IFrame API
+        let player;
+        let isPlaying = false;
+        let duration = 0;
+        let currentTime = 0;
+
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Initialize player when API is ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            duration = player.getDuration();
+            updateTimeDisplay();
+
+            // Start progress tracking
+            setInterval(() => {
+                if (isPlaying) {
+                    currentTime = player.getCurrentTime();
+                    updateProgressBar();
+                    updateTimeDisplay();
+                }
+            }, 1000);
+        }
+
+        function onPlayerStateChange(event) {
+            const playBtn = document.getElementById('playBtn');
+
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                playBtn.innerHTML = '⏸️';
+            } else {
+                isPlaying = false;
+                playBtn.innerHTML = '▶';
+            }
+
+            if (event.data === YT.PlayerState.ENDED) {
+                resetProgress();
+            }
+        }
+
+        // Custom controls functionality
+        document.getElementById('playBtn').addEventListener('click', () => {
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        });
+
+        document.getElementById('progressContainer').addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const percentage = clickX / rect.width;
+            const seekTime = percentage * duration;
+            player.seekTo(seekTime);
+        });
+
+        document.getElementById('fullscreenBtn').addEventListener('click', () => {
+            const container = document.getElementById('videoContainer');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                container.requestFullscreen();
+            }
+        });
+
+        function updateProgressBar() {
+            const percentage = (currentTime / duration) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        function updateTimeDisplay() {
+            const current = formatTime(currentTime);
+            const total = formatTime(duration);
+            document.getElementById('timeDisplay').textContent = `${current} / ${total}`;
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function resetProgress() {
+            currentTime = 0;
+            updateProgressBar();
+            updateTimeDisplay();
+        }
+
+        // Remove YouTube branding after iframe loads
+        function removeYouTubeElements() {
+            const iframe = document.getElementById('youtube-player');
+
+            iframe.addEventListener('load', () => {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                    // Hide title and related videos
+                    const style = iframeDoc.createElement('style');
+                    style.textContent = `
+                .ytp-chrome-top-buttons,
+                .ytp-title,
+                .ytp-youtube-button,
+                .ytp-watermark,
+                .ytp-endscreen-content,
+                .ytp-ce-element,
+                .ytp-cards-teaser,
+                .ytp-pause-overlay {
+                    display: none !important;
+                }
+            `;
+                    iframeDoc.head.appendChild(style);
+                } catch (e) {
+                    console.log('Cross-origin restrictions prevent direct manipulation');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* Video container with aspect ratio */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* YouTube iframe styling */
+#youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+/* Video thumbnail */
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Custom play button overlay */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.play-overlay:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.play-button {
+    transition: transform 0.3s ease;
+}
+
+.play-overlay:hover .play-button {
+    transform: scale(1.1);
+}
+
+.play-button svg {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Input section styling */
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Button styling */
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Demo section */
+.demo-section {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e1e8ed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .play-button svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+/* Loading animation */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hide YouTube branding when iframe is loaded */
+.video-container iframe {
+    pointer-events: auto;
+}
+
+.video-container.playing .play-overlay,
+.video-container.playing .video-thumbnail {
+    display: none;
+}
+
+.video-container.playing iframe {
+    display: block;
+}

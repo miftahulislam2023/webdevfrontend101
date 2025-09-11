@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom YouTube Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            padding: 20px;
+        }
+        
+        .player-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+        
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .custom-controls {
+            padding: 15px;
+            background-color: #232323;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .play-pause {
+            width: 40px;
+            height: 40px;
+            background-color: #ff0000;
+            border-radius: 50%;
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #444;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #ff0000;
+            border-radius: 3px;
+            width: 0%;
+            position: relative;
+        }
+        
+        .progress-handle {
+            width: 14px;
+            height: 14px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(50%, -50%);
+            display: none;
+        }
+        
+        .progress-container:hover .progress-handle {
+            display: block;
+        }
+        
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            -webkit-appearance: none;
+            background: #444;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+        }
+        
+        .time {
+            color: #ddd;
+            font-size: 14px;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .settings-btn, .pip-btn, .fullscreen-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #333;
+        }
+        
+        .controls-right {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+        
+        .video-title {
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            background: linear-gradient(to right, #232323, #1a1a1a);
+            border-bottom: 1px solid #2e2e2e;
+        }
+        
+        .quality-options {
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            right: 15px;
+            background-color: rgba(35, 35, 35, 0.9);
+            border-radius: 4px;
+            padding: 10px;
+            z-index: 100;
+        }
+        
+        .quality-option {
+            color: white;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .quality-option:hover {
+            background-color: #ff0000;
+        }
+        
+        .settings-container {
+            position: relative;
+        }
+        
+        /* Hide YouTube controls and titles */
+        .ytp-title, .ytp-chrome-top-buttons, .ytp-share-button, .ytp-watch-later-button, .ytp-button.ytp-youtube-button {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="video-title">Custom YouTube Player - Beautiful Nature</div>
+        <div class="video-container">
+            <div id="player"></div>
+        </div>
+        <div class="custom-controls">
+            <button class="btn play-pause" id="play-pause">▶</button>
+            
+            <div class="time" id="current-time">0:00</div>
+            <div class="time">/</div>
+            <div class="time" id="duration">0:00</div>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress" id="progress">
+                    <div class="progress-handle"></div>
+                </div>
+            </div>
+            
+            <div class="volume-container">
+                <button class="btn" id="mute">🔊</button>
+                <input type="range" class="volume-slider" id="volume" min="0" max="100" value="100">
+            </div>
+            
+            <div class="controls-right">
+                <div class="settings-container">
+                    <button class="btn settings-btn" id="settings">⚙️</button>
+                    <div class="quality-options" id="quality-options">
+                        <div class="quality-option" data-quality="hd1080">1080p</div>
+                        <div class="quality-option" data-quality="hd720">720p</div>
+                        <div class="quality-option" data-quality="large">480p</div>
+                        <div class="quality-option" data-quality="medium">360p</div>
+                    </div>
+                </div>
+                
+                <button class="btn pip-btn" id="pip">⊡</button>
+                <button class="btn fullscreen-btn" id="fullscreen">⛶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Variables
+        let player;
+        const videoId = 'jNQXAC9IVRw'; // Replace with your video ID
+        
+        // DOM Elements
+        const playPauseBtn = document.getElementById('play-pause');
+        const progressContainer = document.getElementById('progress-container');
+        const progress = document.getElementById('progress');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volume');
+        const muteBtn = document.getElementById('mute');
+        const fullscreenBtn = document.getElementById('fullscreen');
+        const settingsBtn = document.getElementById('settings');
+        const qualityOptions = document.getElementById('quality-options');
+        const pipBtn = document.getElementById('pip');
+        
+        // Initialize YouTube Player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'iv_load_policy': 3,
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        
+        // When player is ready
+        function onPlayerReady(event) {
+            updateDuration();
+            setInterval(updateProgress, 500);
+            
+            // Hide YouTube's native controls completely
+            const iframe = document.getElementById('player');
+            iframe.style.filter = 'grayscale(0)'; // Remove any filters if applied
+            
+            // Additional method to hide YouTube branding
+            setTimeout(hideYouTubeBranding, 1000);
+        }
+        
+        // Function to hide YouTube branding
+        function hideYouTubeBranding() {
+            const iframe = document.getElementById('player');
+            try {
+                // Try to access the iframe's document
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                
+                // Hide YouTube logo
+                const logo = iframeDoc.querySelector('.ytp-youtube-button');
+                if (logo) logo.style.display = 'none';
+                
+                // Hide other control elements
+                const titles = iframeDoc.querySelectorAll('.ytp-title');
+                titles.forEach(title => title.style.display = 'none');
+                
+                // Hide top buttons
+                const topButtons = iframeDoc.querySelectorAll('.ytp-chrome-top-buttons');
+                topButtons.forEach(btn => btn.style.display = 'none');
+            } catch (e) {
+                // Cross-origin restrictions may prevent this, but we try anyway
+                console.log("Could not access iframe DOM due to security restrictions");
+            }
+        }
+        
+        // Handle player state changes
+        function onPlayerStateChange(event) {
+            const state = event.data;
+            
+            if (state === YT.PlayerState.PLAYING) {
+                playPauseBtn.textContent = '❚❚';
+            } else {
+                playPauseBtn.textContent = '▶';
+            }
+        }
+        
+        // Toggle play/pause
+        playPauseBtn.addEventListener('click', () => {
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        });
+        
+        // Update progress bar
+        function updateProgress() {
+            if (player && player.getDuration) {
+                const percent = (player.getCurrentTime() / player.getDuration()) * 100;
+                progress.style.width = `${percent}%`;
+                
+                // Update time displays
+                currentTimeEl.textContent = formatTime(player.getCurrentTime());
+            }
+        }
+        
+        // Seek video when clicking on progress bar
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            player.seekTo(player.getDuration() * percent);
+        });
+        
+        // Update volume
+        volumeSlider.addEventListener('input', () => {
+            player.setVolume(volumeSlider.value);
+            muteBtn.textContent = volumeSlider.value == 0 ? '🔇' : '🔊';
+        });
+        
+        // Toggle mute
+        muteBtn.addEventListener('click', () => {
+            if (player.isMuted()) {
+                player.unMute();
+                muteBtn.textContent = '🔊';
+                volumeSlider.value = player.getVolume();
+            } else {
+                player.mute();
+                muteBtn.textContent = '🔇';
+                volumeSlider.value = 0;
+            }
+        });
+        
+        // Toggle fullscreen
+        fullscreenBtn.addEventListener('click', () => {
+            const container = document.querySelector('.player-container');
+            
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        });
+        
+        // Toggle settings menu
+        settingsBtn.addEventListener('click', () => {
+            qualityOptions.style.display = qualityOptions.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close settings when clicking elsewhere
+        document.addEventListener('click', (e) => {
+            if (!settingsBtn.contains(e.target) && !qualityOptions.contains(e.target)) {
+                qualityOptions.style.display = 'none';
+            }
+        });
+        
+        // Change quality
+        document.querySelectorAll('.quality-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const quality = option.getAttribute('data-quality');
+                player.setPlaybackQuality(quality);
+                qualityOptions.style.display = 'none';
+            });
+        });
+        
+        // Picture in Picture (simulated with a new window)
+        pipBtn.addEventListener('click', () => {
+            alert('Picture-in-Picture would open in a separate window. This is a simulated feature.');
+        });
+        
+        // Format time in minutes:seconds
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Update duration display
+        function updateDuration() {
+            if (player && player.getDuration) {
+                const interval = setInterval(() => {
+                    if (player.getDuration()) {
+                        durationEl.textContent = formatTime(player.getDuration());
+                        clearInterval(interval);
+                    }
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
