@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +10,34 @@
     <style>
         /* Optional: Custom theme for Plyr controls */
         :root {
-            --plyr-color-main: #ff0000; /* Primary color for progress, buttons */
-            --plyr-video-background: #000; /* Player background */
+            --plyr-color-main: #ff0000;
+            /* Primary color for progress, buttons */
+            --plyr-video-background: #000;
+            /* Player background */
         }
+
         .plyr {
             max-width: 1280px;
             margin: 0 auto;
         }
+
         /* Hide any residual YouTube branding if it peeks through (adjust as needed) */
         .plyr__video-embed iframe {
-            pointer-events: none; /* Prevent interaction with underlying YT controls */
+            pointer-events: none;
+            /* Prevent interaction with underlying YT controls */
         }
     </style>
 </head>
+
 <body>
-    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="ShDMvwem7Fs"></div>
+    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="sKWCMO2eI6s"></div>
 
     <!-- Plyr JS from CDN -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
     <script>
         const player = new Plyr('#player', {
             // Custom controls (add/remove as needed)
-            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'pip', 'airplay', 'fullscreen'],
             // YouTube-specific options to minimize branding
             youtube: {
                 rel: 0,              // Hide related videos
@@ -48,4 +55,5 @@
         });
     </script>
 </body>
+
 </html>
