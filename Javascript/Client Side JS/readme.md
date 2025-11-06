@@ -189,3 +189,60 @@
 4. os Module
 5. url & querystring Modules
 6. http Module
+
+## Reference
+- DOM
+   - window.document
+   - document.body
+   - document.body.innetHTML
+   - document.body.innertText
+   - DOCUMENT.links, document.links[i] -> an array
+   - document.write()
+- Selecting
+  - document.getElementById()
+  - document.querySelector()
+- Reading List
+  - document.all, document.all[i] -> an array
+  - document.documentElement
+  - document.head.children
+  - document.body.children
+  - document.doctype
+  - document.domain
+  - document.URL
+  - document.characterSet
+  - document.contentType
+  - document.forms[i], document.forms[i].id, document.forms[i].method, document.forms[i].action...
+  - document.forms[i].className, document.forms[i].classList 
+  - document.getElementById().title -> getAttribute
+  - document.getElementById().setAttribute('class', 'title') -> setAttribute
+- NodeList
+  - document.querySelectorAll()
+- DOM Element Relationship
+  - document.querySelector().children, document.querySelector().children[i] -> an array
+  - firstElementChild
+  - parentElement
+  - nextElementSibling
+  - previousElementSibling
+- DOM Node Relationships
+  - document.querySelector().childNodes, document.querySelector().childNodes[i] -> an array
+  - childeNodes[i].nodeName
+  - childeNodes[i].textContent
+  - childeNodes[i].outerHTML
+  - childeNodes[i].innerText
+  - parentNode vs parentElement
+- Create Elements
+  - document.createElement('tagname')
+  - document.createTextNode()
+  - document.appendChild()
+- Inserting Elements
+  -  insertAdjacentElement
+  -  insertAdjacentText
+  -  insertAdjacentHTML
+     -  beforeBegin
+     -  afterBegin
+     -  beforeEnd
+     -  afterEnd
+  -  insertBefore -> Similar to appendChild but a little bit different
+- Replace Elements
+- Remove Elements
+- Adding/Removing CSS Classes
