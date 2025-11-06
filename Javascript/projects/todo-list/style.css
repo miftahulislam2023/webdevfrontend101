@@ -1,0 +1,23 @@
+#list {
+    max-width: 250px;
+    /* background-color: red; */
+    /* margin: 0; */
+    /* padding: 0; */
+}
+
+#list> li > span > i {
+    color: green;
+}
+
+#list> li > span > i:hover {
+    color: red;
+}
+
+#list > li > span {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: aqua; */
+    /* margin: 0;
+    padding: 0;
+    border: 0;*/
+}
