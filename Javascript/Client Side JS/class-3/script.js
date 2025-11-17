@@ -7,5 +7,4 @@ console.log(document.head)
 console.log(document.links[0].href)
 console.log(document.write())
 
-
 // element selecting

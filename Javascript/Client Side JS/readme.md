@@ -192,16 +192,12 @@
 
 ## Reference
 - DOM
-   - window.document
-   - document.body
-   - document.body.innetHTML
-   - document.body.innertText
-   - DOCUMENT.links, document.links[i] -> an array
-   - document.write()
-- Selecting
-  - document.getElementById()
-  - document.querySelector()
-- Reading List
+  - window.document
+  - document.body
+  - document.body.innetHTML
+  - document.body.innertText
+  - DOCUMENT.links, document.links[i] -> an array
+  - document.write()
   - document.all, document.all[i] -> an array
   - document.documentElement
   - document.head.children
@@ -212,11 +208,13 @@
   - document.characterSet
   - document.contentType
   - document.forms[i], document.forms[i].id, document.forms[i].method, document.forms[i].action...
-  - document.forms[i].className, document.forms[i].classList 
+  - document.forms[i].className, document.forms[i].classList
+- Selecting
+  - document.getElementById()
+  - document.querySelector()
+  - document.querySelectorAll()
   - document.getElementById().title -> getAttribute
   - document.getElementById().setAttribute('class', 'title') -> setAttribute
-- NodeList
-  - document.querySelectorAll()
 - DOM Element Relationship
   - document.querySelector().children, document.querySelector().children[i] -> an array
   - firstElementChild

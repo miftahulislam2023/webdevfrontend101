@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Masterclass</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        .module { margin-bottom: 40px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        h1 { color: #2c3e50; }
+        h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        h3 { color: #2ecc71; }
+        code { background-color: #ecf0f1; padding: 2px 4px; border-radius: 3px; font-family: 'Consolas', monospace; color: #c0392b; }
+        pre { background-color: #f4f4f4; padding: 15px; border-left: 5px solid #3498db; overflow-x: auto; }
+        .concept-list { list-style-type: none; padding-left: 0; }
+        .concept-list li { margin-bottom: 8px; }
+    </style>
+    <!-- <script src="script.js" defer></script> -->
+     <script src="query-selector.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>📚 DOM Manipulation: The Heart of Interactive Web Pages</h1>
+        <p>A structured course on manipulating the Document Object Model using JavaScript.</p>
+    </header>
+
+    <hr>
+
+    <div class="module" id="curriculum">
+        <h2>Curriculum Outline</h2>
+        <ol>
+            <li>Section Intro</li>
+            <li>Intro To The DOM</li>
+            <li>Document Element Properties</li>
+            <li>DOM Selectors - Single Elements</li>
+            <li>DOM Selectors - Multiple Elements</li>
+            <li>Traversing The DOM - Elements</li>
+            <li>Traversing The DOM - All Nodes</li>
+            <li>Create & Append Elements</li>
+            <li>InnerHTML vs createElement()</li>
+            <li>Refactor To Multiple Functions</li>
+            <li>Insert Elements, Text & HTML</li>
+            <li>Custom <code>insertAfter()</code> Challenge</li>
+            <li>Replace Elements</li>
+            <li>Remove Elements</li>
+            <li>Manipulating Styles & Classes</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <div class="module" id="dom-core">
+        <h2>🌐 DOM Core: Window and Document Properties</h2>
+        <p>The **Document Object Model (DOM)** is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The <code>document</code> object is your main entry point.</p>
+        
+        <h3>Essential Document Properties</h3>
+        <ul class="concept-list">
+            <li><code>window.document</code>: The main object representing the document.</li>
+            <li><code>document.body</code>: Accesses the <code>&lt;body&gt;</code> element.</li>
+            <li><code>document.body.innerHTML</code>: Gets or sets the HTML content within the body.</li>
+            <li><code>document.body.innerText</code>: Gets or sets the visible text content.</li>
+            <li><code>document.links</code>: A collection (NodeList) of all <code>&lt;a&gt;</code> elements with an <code>href</code>. Access individual links with <code>document.links[i]</code>.</li>
+            <li><code>document.write()</code>: Writes HTML expressions or JavaScript code to a document (use sparingly, as it can overwrite existing content).</li>
+            <li><code>document.all</code>: A legacy collection of all elements (use selectors instead). Access individual elements with <code>document.all[i]</code>.</li>
+        </ul>
+
+        <h3>Document Structure & Metadata</h3>
+        <ul class="concept-list">
+            <li><code>document.documentElement</code>: Accesses the root <code>&lt;html&gt;</code> element.</li>
+            <li><code>document.head.children</code> / <code>document.body.children</code>: HTMLCollection of direct child *elements* (not including text/comment nodes).</li>
+            <li><code>document.doctype</code>: The document's doctype declaration.</li>
+            <li><code>document.domain</code>: The domain of the server the document is loaded from.</li>
+            <li><code>document.URL</code>: The full URL of the document.</li>
+            <li><code>document.characterSet</code>: The character encoding used (e.g., "UTF-8").</li>
+            <li><code>document.contentType</code>: The MIME type of the document.</li>
+            <li><code>document.forms[i]</code>: A collection of all <code>&lt;form&gt;</code> elements. Access properties like <code>.id</code>, <code>.method</code>, <code>.action</code>, <code>.className</code>, and <code>.classList</code> on individual forms.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="module" id="selecting-elements">
+        <h2>🎯 Element Selection & Attributes</h2>
+        <p>How to find specific elements in the DOM.</p>
+
+        <h3>Single Element Selectors</h3>
+        <ul class="concept-list">
+            <li><code>document.getElementById('id-name')</code>: Selects the element with the matching **ID**.</li>
+            <li><code>document.querySelector('selector')</code>: Selects the **first** element that matches the specified CSS selector (e.g., <code>'#id'</code>, <code>'.class'</code>, <code>'tagname'</code>).</li>
+        </ul>
+        
+        <h3>Multiple Element Selectors</h3>
+        <ul class="concept-list">
+            <li><code>document.querySelectorAll('selector')</code>: Selects **all** elements that match the specified CSS selector, returning a **NodeList**.</li>
+        </ul>
+
+        <h3>Attributes</h3>
+        <ul class="concept-list">
+            <li><code>element.getAttribute('attrName')</code>: Gets the value of a specified attribute (e.g., <code>document.getElementById('id').title</code> is similar to <code>getAttribute('title')</code>).</li>
+            <li><code>element.setAttribute('attrName', 'newValue')</code>: Sets the value of a specified attribute (e.g., <code>document.getElementById('id').setAttribute('class', 'title')</code>).</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="module" id="traversing">
+        <h2>🚶‍♂️ Traversing The DOM</h2>
+        <p>Moving between parent, child, and sibling elements/nodes.</p>
+
+        <h3>DOM Element Relationships (Elements only - ignores text/comment nodes)</h3>
+        <ul class="concept-list">
+            <li><code>element.children</code>: Returns an **HTMLCollection** of child **elements**. Access with <code>element.children[i]</code>.</li>
+            <li><code>element.firstElementChild</code>: The first child element.</li>
+            <li><code>element.parentElement</code>: The closest parent element.</li>
+            <li><code>element.nextElementSibling</code>: The next sibling element.</li>
+            <li><code>element.previousElementSibling</code>: The previous sibling element.</li>
+        </ul>
+
+        <h3>DOM Node Relationships (Includes all nodes: elements, text, and comments)</h3>
+        <ul class="concept-list">
+            <li><code>element.childNodes</code>: Returns a **NodeList** of all child **nodes**. Access with <code>element.childNodes[i]</code>.</li>
+            <li><code>node.nodeName</code>: The name of the node (e.g., <code>'DIV'</code>, <code>'#text'</code>).</li>
+            <li><code>node.textContent</code>: The text content of the node and its descendants.</li>
+            <li><code>node.outerHTML</code>: The HTML of the element, including the element itself.</li>
+            <li><code>node.innerText</code>: The "rendered" text content (takes CSS into account).</li>
+            <li><code>parentNode</code> **vs** <code>parentElement</code>: <code>parentNode</code> returns any node (element, text, document fragment), while <code>parentElement</code> only returns an element.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="module" id="manipulation">
+        <h2>🔨 Creating, Inserting, Replacing & Removing</h2>
+
+        <h3>Creating New Nodes</h3>
+        <ul class="concept-list">
+            <li><code>document.createElement('tagname')</code>: Creates a new element node (e.g., <code>&lt;li&gt;</code>).</li>
+            <li><code>document.createTextNode('text content')</code>: Creates a new text node.</li>
+            <li><code>parent.appendChild(child)</code>: Adds a node as the **last** child of a parent node.</li>
+        </ul>
+
+        <h3>Inserting Elements</h3>
+        <ul class="concept-list">
+            <li><code>parent.insertBefore(newNode, referenceNode)</code>: Inserts a <code>newNode</code> before a <code>referenceNode</code> (similar to <code>appendChild</code> but more flexible).</li>
+            <li><code>targetElement.insertAdjacentElement(position, element)</code></li>
+            <li><code>targetElement.insertAdjacentText(position, text)</code></li>
+            <li><code>targetElement.insertAdjacentHTML(position, htmlString)</code>: This method is highly flexible, supporting four positions relative to the <code>targetElement</code>:
+                <ul>
+                    <li><code>'beforebegin'</code>: Before the target element itself.</li>
+                    <li><code>'afterbegin'</code>: Just inside the target element, before its first child.</li>
+                    <li><code>'beforeend'</code>: Just inside the target element, after its last child.</li>
+                    <li><code>'afterend'</code>: After the target element itself.</li>
+                </ul>
+            </li>
+            <li>**Custom Challenge:** Implement a custom <code>insertAfter()</code> function using existing methods.</li>
+        </ul>
+
+        <h3>Replacing and Removing</h3>
+        <ul class="concept-list">
+            <li><code>parent.replaceChild(newChild, oldChild)</code>: Replaces an <code>oldChild</code> node with a <code>newChild</code> node.</li>
+            <li><code>parent.removeChild(child)</code>: Removes a specified <code>child</code> node from the parent.</li>
+            <li><code>element.remove()</code>: A simpler method to remove the element itself (supported in modern browsers).</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="module" id="styles">
+        <h2>🎨 Manipulating Styles & Classes</h2>
+        <p>Changing the visual presentation of elements.</p>
+
+        <h3>Styles</h3>
+        <ul class="concept-list">
+            <li><code>element.style.propertyName = 'value'</code>: Directly sets an inline CSS style. (e.g., <code>element.style.backgroundColor = 'red'</code>).</li>
+        </ul>
+
+        <h3>CSS Classes</h3>
+        <ul class="concept-list">
+            <li><code>element.className</code>: Gets or sets the entire class attribute as a string (overwrites existing classes).</li>
+            <li><code>element.classList</code>: Provides a live list of classes for safer manipulation:
+                <ul>
+                    <li><code>element.classList.add('new-class')</code>: Adds one or more classes.</li>
+                    <li><code>element.classList.remove('old-class')</code>: Removes one or more classes.</li>
+                    <li><code>element.classList.toggle('class-name')</code>: Adds a class if it doesn't exist, removes it if it does.</li>
+                    <li><code>element.classList.contains('class-name')</code>: Checks if a class is present (returns boolean).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DOM Manipulation Course Material</p>
+    </footer>
+
+</body>
+</html>
