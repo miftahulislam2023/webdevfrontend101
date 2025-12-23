@@ -1,0 +1,13 @@
+// console.log(window.document.body)
+fifthLi = document.createElement('li')
+console.log(fifthLi)
+text = document.createTextNode('6')
+console.log(text)
+fifthLi.appendChild(text)
+// fifthLi.textContent = '6'
+ul = document.querySelector('ul')
+// console.log(ul)
+ul.appendChild(fifthLi)
+// // console.log(ul.children)
+// for(child of ul.children)
+//     console.log(child.textContent)
