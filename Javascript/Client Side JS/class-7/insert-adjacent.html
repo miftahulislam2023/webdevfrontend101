@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insertAdjacent</title>
+</head>
+<body>
+    <ul>
+        <li class="item1">1</li>
+        <li class="item2">2</li>
+        <li class="item3">3</li>
+        <li class="item4">4</li>
+        <li class="item5">5</li>
+        <li class="item6">6</li>
+        <li class="item7">7</li>
+        <li class="item8">8</li>
+        <li class="item9">9</li>
+        <li class="item10">10</li>
+    </ul>
+</body>
+<script>
+    // li = document.getElementsByClassName('item5')[0]
+    li = document.querySelector('.item5')
+    console.log(li)
+    list = document.createElement('ol')
+    list.type = 'a'
+    li1 = document.createElement('li')
+    li1.textContent = 'I have been inserted'
+    list.appendChild(li1)
+    console.log(list)
+
+    // li.insertAdjacentElement('beforebegin', list)
+    // li.insertAdjacentElement('afterend', list)
+    li.insertAdjacentElement('afterbegin', list)
+    // li.insertAdjacentElement('beforeend', list)
+</script>
+</html>
