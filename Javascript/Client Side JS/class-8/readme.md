@@ -131,3 +131,38 @@ function updateUI() {
 * **Replace:** সরাসরি বদলাতে `replaceWith()`, আর প্যারেন্টের মাধ্যমে বদলাতে `replaceChild()`।
 * **Remove:** নিজের জন্য `remove()`, চাইল্ডের জন্য `removeChild()`।
 * **Classes:** সব সময় `classList` ব্যবহার করার চেষ্টা করবেন কারণ এটি `className` এর চেয়ে নিরাপদ এবং সহজ।
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replacing and Removing Elements</title>
+</head>
+<body>
+    <div>
+        <h2>This is H2</h2>
+    </div>
+    <p>This paragraph is removed</p>
+    <script>
+        h2 = document.querySelector('h2')
+        // console.log(h2.textContent)
+        h1 = document.createElement('h1')
+        h1.textContent = 'This is the replaced form'
+        // h2.replaceWith(h1)
+        div = document.querySelector('div')
+        // console.log(div)
+        div.replaceChild(h1, h2)
+
+        p = document.querySelector('p')
+        // p.remove()
+        document.body.removeChild(p)
+    </script>
+</body>
+</html>
+```
+
+```html
+
+```
