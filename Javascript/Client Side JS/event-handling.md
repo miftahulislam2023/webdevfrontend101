@@ -149,44 +149,7 @@ if (isLoggedIn) {
     console.log("লিসেনার অ্যাড করা হয়নি কারণ ইউজার লগইন নেই।");
 }
 ```
-
-## ৩. মাউস ইভেন্ট (Mouse Events)
-
-**গভীর তত্ত্ব (Deep Theory):**
-মাউস ইভেন্টে কো-অর্ডিনেট বোঝা খুব জরুরি:
-
-* `clientX/Y`: ব্রাউজার উইন্ডোর সাপেক্ষে পজিশন।
-* `pageX/Y`: পুরো ডকুমেন্টের সাপেক্ষে পজিশন (স্ক্রল সহ)।
-* `offsetX/Y`: যেই এলিমেন্টে ক্লিক করেছেন তার সাপেক্ষে পজিশন।
-
-**কিছু সিনারিও ও উদাহরণ:**
-
-1. **রাইট ক্লিক (Context Menu):**
-```javascript
-window.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // ডিফল্ট মেনু বন্ধ করা
-    console.log('কাস্টম মেনু দেখান');
-});
-
-```
-
-2. **ডাবল ক্লিক (`dblclick`):** ফোল্ডার ওপেন করার স্টাইল।
-3. **মাউস পজিশন ট্র্যাকার:**
-```javascript
-window.addEventListener('mousemove', (e) => {
-    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 100)`;
-});
-
-```
-
-4. **Hover Effect (JS দিয়ে):** `mouseenter` এবং `mouseleave`।
-5. **Drag and Drop (Basic):** `mousedown` এ ফ্ল্যাগ অন করা, `mousemove` এ পজিশন বদলানো, `mouseup` এ ফ্ল্যাগ অফ করা।
-6. **টেক্সট সিলেকশন বন্ধ করা:** `mousedown` এ `e.preventDefault()`।
-7. **কোন মাউস বাটন চাপা হয়েছে:** `e.button` (0 = left, 1 = middle, 2 = right)।
-8. **Mouse Over vs Enter:** `mouseover` বাবল করে, `mouseenter` বাবল করে না (এটি বেশি নিরাপদ)।
-9. **এলিমেন্টের কোণায় ক্লিক ডিটেকশন:** `offsetX` এবং `offsetY` ব্যবহার করে।
-10. **ক্লিক হোল্ড (Long Press):** `mousedown` এ টাইমার সেট করা এবং `mouseup` এ ক্লিয়ার করা।
-## ৪. ইভেন্ট অবজেক্ট (The Event Object)
+## ৩. ইভেন্ট অবজেক্ট (The Event Object)
 
 **গভীর তত্ত্ব (Deep Theory):**
 ইভেন্ট অবজেক্ট হলো তথ্যের খনি।
@@ -224,6 +187,42 @@ btn.addEventListener('click', (e) => {
 8. **`e.target.id`:** এলিমেন্টের আইডি নেওয়া।
 9. **`e.composedPath()`:** ইভেন্টটি কোন কোন এলিমেন্টের মধ্য দিয়ে এসেছে তার অ্যারে।
 10. **`e.isTrusted`:** ইভেন্টটি কি ইউজার করেছে (true) নাকি স্ক্রিপ্ট দিয়ে তৈরি (false)।
+## ৪. মাউস ইভেন্ট (Mouse Events)
+
+**গভীর তত্ত্ব (Deep Theory):**
+মাউস ইভেন্টে কো-অর্ডিনেট বোঝা খুব জরুরি:
+
+* `clientX/Y`: ব্রাউজার উইন্ডোর সাপেক্ষে পজিশন।
+* `pageX/Y`: পুরো ডকুমেন্টের সাপেক্ষে পজিশন (স্ক্রল সহ)।
+* `offsetX/Y`: যেই এলিমেন্টে ক্লিক করেছেন তার সাপেক্ষে পজিশন।
+
+**কিছু সিনারিও ও উদাহরণ:**
+
+1. **রাইট ক্লিক (Context Menu):**
+```javascript
+window.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // ডিফল্ট মেনু বন্ধ করা
+    console.log('কাস্টম মেনু দেখান');
+});
+
+```
+
+2. **ডাবল ক্লিক (`dblclick`):** ফোল্ডার ওপেন করার স্টাইল।
+3. **মাউস পজিশন ট্র্যাকার:**
+```javascript
+window.addEventListener('mousemove', (e) => {
+    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 100)`;
+});
+
+```
+
+4. **Hover Effect (JS দিয়ে):** `mouseenter` এবং `mouseleave`।
+5. **Drag and Drop (Basic):** `mousedown` এ ফ্ল্যাগ অন করা, `mousemove` এ পজিশন বদলানো, `mouseup` এ ফ্ল্যাগ অফ করা।
+6. **টেক্সট সিলেকশন বন্ধ করা:** `mousedown` এ `e.preventDefault()`।
+7. **কোন মাউস বাটন চাপা হয়েছে:** `e.button` (0 = left, 1 = middle, 2 = right)।
+8. **Mouse Over vs Enter:** `mouseover` বাবল করে, `mouseenter` বাবল করে না (এটি বেশি নিরাপদ)।
+9. **এলিমেন্টের কোণায় ক্লিক ডিটেকশন:** `offsetX` এবং `offsetY` ব্যবহার করে।
+10. **ক্লিক হোল্ড (Long Press):** `mousedown` এ টাইমার সেট করা এবং `mouseup` এ ক্লিয়ার করা।
 ## ৫. কীবোর্ড ইভেন্ট (Keyboard Events)
 
 **গভীর তত্ত্ব (Deep Theory):**

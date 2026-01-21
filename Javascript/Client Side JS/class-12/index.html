@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer-div {
+            padding: 50px;
+            background-color: brown;
+            max-width: 150px;
+        }
+
+        #inner-div {
+            padding: 10px;
+            background-color: green;
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer-div">
+        <div id="inner-div">
+            <button>Click me</button>
+        </div>
+    </div>
+    <br>
+    <a href="https://miftahcoding.com">MiftahCoding</a>
+    <script>
+        function handleClick(e) {
+            // console.log(e)
+            // console.log(e.target)
+            // console.log(e.currentTarget)
+            // console.log(e.timeStamp/1000)
+            // e.stopPropagation()
+            console.log(e.composedPath())
+        }
+        btn = document.querySelector('button')
+        btn.addEventListener('click', handleClick)
+        
+        innerDiv = document.querySelector('#inner-div')
+        outerDiv = document.querySelector('#outer-div')
+
+        innerDiv.addEventListener('click', handleClick)
+        outerDiv.addEventListener('click', handleClick)
+
+        a = document.querySelector('a')
+        a.addEventListener('click', (e) => {
+            e.preventDefault()
+            console.log('I couldn\'t go to MiftahCoding\'s website')
+        })
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            console.log(e.isTrusted)
+        })
+    </script>
+</body>
+</html>
