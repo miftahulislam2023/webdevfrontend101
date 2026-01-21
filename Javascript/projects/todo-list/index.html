@@ -7,12 +7,19 @@
     <title>Todo List Application</title>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- <style>
+        input[type='submit'] {
+            color: red;
+        }
+    </style> -->
 </head>
 
 <body>
+    <h1>To Do List App</h1>
+    <button>Click Me</button><br><br>
     <form>
         <input type="text" placeholder="Pray salah">
-        <input type="submit">
+        <input id="submit-button" type="submit">
     </form>
     <ol id="list" type="1">
         <li>
@@ -31,6 +38,33 @@
             </span>
         </li>
     </ol>
+    <script>
+        function handleSubmit1() {
+            // alert('handleSubmit1')
+            console.log('handleSubmit1')
+        }
+        function handleSubmit2() {
+            // alert('handleSubmit2')
+            console.log('handleSubmit2')
+        }
+        // submitBtn = document.querySelector('#submit-button')
+        // submitBtn.addEventListener('click', handleSubmit1)
+        // submitBtn.addEventListener('click', handleSubmit2)
+        // submitBtn.removeEventListener('click', handleSubmit)
+        // submitBtn.removeEventListener('click', () => alert('Submit Button Clicked') )
+        titleH1 = document.querySelector('h1')
+        titleH1.addEventListener('click', handleSubmit1)
+        titleH1.addEventListener('click', handleSubmit2, { once: true })
+
+        // function wrapper
+        btn = document.querySelector('button')
+        function showMessage(greeting, name) {
+            alert(greeting + ', ' + name);
+        }
+        btn.addEventListener('click', () => {
+            showMessage('Hello', 'User');
+        });
+    </script>
 </body>
 
 </html>
