@@ -198,31 +198,146 @@ btn.addEventListener('click', (e) => {
 
 **কিছু সিনারিও ও উদাহরণ:**
 
-1. **রাইট ক্লিক (Context Menu):**
+আপনার দেওয়া লিস্টটি জাভাস্ক্রিপ্ট মাউস ইভেন্টগুলো বোঝার জন্য চমৎকার একটি গাইড। আমি ১-৩ নম্বর পয়েন্টগুলোকে আরও উন্নত (Enhance) করছি এবং ৪-১০ পর্যন্ত পয়েন্টগুলো বিস্তারিতভাবে সম্পন্ন করে দিচ্ছি।
+
+
+## জাভাস্ক্রিপ্ট মাউস ইভেন্ট মাস্টারক্লাস
+
+### ১. উন্নত রাইট ক্লিক (Custom Context Menu)
+
+শুধুমাত্র মেনু বন্ধ করাই নয়, মাউসের পজিশন অনুযায়ী একটি কাস্টম মেনু দেখানোই এর আসল কাজ।
+
 ```javascript
 window.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // ডিফল্ট মেনু বন্ধ করা
-    console.log('কাস্টম মেনু দেখান');
+    e.preventDefault();
+    const menu = document.getElementById('custom-menu');
+    menu.style.top = `${e.pageY}px`;
+    menu.style.left = `${e.pageX}px`;
+    menu.style.display = 'block';
 });
 
 ```
 
-2. **ডাবল ক্লিক (`dblclick`):** ফোল্ডার ওপেন করার স্টাইল।
-3. **মাউস পজিশন ট্র্যাকার:**
+### ২. ডাবল ক্লিক (`dblclick`)
+
+ফোল্ডার বা আইকন ওপেন করার জন্য এটি ব্যবহার করা হয়।
+
 ```javascript
-window.addEventListener('mousemove', (e) => {
-    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 100)`;
+const folder = document.querySelector('.folder');
+folder.addEventListener('dblclick', () => {
+    folder.classList.toggle('is-open');
+    console.log('Folder Opened!');
 });
 
 ```
 
-4. **Hover Effect (JS দিয়ে):** `mouseenter` এবং `mouseleave`।
-5. **Drag and Drop (Basic):** `mousedown` এ ফ্ল্যাগ অন করা, `mousemove` এ পজিশন বদলানো, `mouseup` এ ফ্ল্যাগ অফ করা।
-6. **টেক্সট সিলেকশন বন্ধ করা:** `mousedown` এ `e.preventDefault()`।
-7. **কোন মাউস বাটন চাপা হয়েছে:** `e.button` (0 = left, 1 = middle, 2 = right)।
-8. **Mouse Over vs Enter:** `mouseover` বাবল করে, `mouseenter` বাবল করে না (এটি বেশি নিরাপদ)।
-9. **এলিমেন্টের কোণায় ক্লিক ডিটেকশন:** `offsetX` এবং `offsetY` ব্যবহার করে।
-10. **ক্লিক হোল্ড (Long Press):** `mousedown` এ টাইমার সেট করা এবং `mouseup` এ ক্লিয়ার করা।
+### ৩. মাউস ট্র্যাকার (Relative to Screen)
+
+* `clientX/Y`: ব্রাউজারের ভিউপোর্ট অনুযায়ী।
+* `pageX/Y`: পুরো ডকুমেন্টের সাইজ অনুযায়ী।
+
+**মাউস পজিশন ট্র্যাকার:**
+
+```javascript
+
+window.addEventListener('mousemove', (e) => {
+
+document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 100)`;
+
+});
+
+```
+
+### ৪. Hover Effect (`mouseenter` বনাম `mouseleave`)
+
+CSS `:hover` দিয়ে অনেক কিছু করা গেলেও, ইন্টারঅ্যাক্টিভ অ্যানিমেশনের জন্য JS জরুরি।
+
+```javascript
+const card = document.querySelector('.card');
+card.addEventListener('mouseenter', () => card.style.transform = 'scale(1.1)');
+card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
+
+```
+
+### ৫. Drag and Drop (Pure JS Logic)
+
+এটি ৩টি স্টেপে কাজ করে:
+
+1. **mousedown:** ধরা।
+2. **mousemove:** টানা।
+3. **mouseup:** ছেড়ে দেওয়া।
+
+```javascript
+let isDragging = false;
+box.addEventListener('mousedown', () => isDragging = true);
+window.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+        box.style.left = `${e.pageX}px`;
+        box.style.top = `${e.pageY}px`;
+    }
+});
+window.addEventListener('mouseup', () => isDragging = false);
+
+```
+
+### ৬. টেক্সট সিলেকশন বন্ধ করা
+
+ইউজার যাতে মাউস দিয়ে ড্রাগ করে টেক্সট কপি বা সিলেক্ট করতে না পারে।
+
+```javascript
+element.addEventListener('mousedown', (e) => {
+    if (e.detail > 1) { // ১ এর বেশি ক্লিক হলে (double/triple click)
+        e.preventDefault();
+    }
+});
+
+```
+
+### ৭. মাউস বাটন ডিটেকশন (`e.button`)
+
+কোন বাটনটি ক্লিক করা হয়েছে তা জানার জন্য এটি অত্যন্ত কার্যকর।
+| Value | Button |
+|  |  |
+| **0** | Left Button (Primary) |
+| **1** | Middle Button (Scroll wheel) |
+| **2** | Right Button (Secondary) |
+
+### ৮. MouseOver vs MouseEnter (The Bubble Difference)
+
+* `mouseover`: বাবল করে (চাইল্ড এলিমেন্টে মাউস গেলেও প্যারেন্ট ইভেন্ট ট্রিগার হয়)।
+* `mouseenter`: বাবল করে না (শুধুমাত্র নির্দিষ্ট এলিমেন্টে ঢুকলেই ট্রিগার হয়)। এটি পারফরম্যান্সের জন্য ভালো।
+
+### ৯. ক্লিক পজিশন ডিটেকশন (`offsetX` ও `offsetY`)
+
+একটি এলিমেন্টের ঠিক কোন জায়গায় (কোণায় না মাঝে) ক্লিক করা হয়েছে তা বের করতে:
+
+```javascript
+element.addEventListener('click', (e) => {
+    console.log(`X: ${e.offsetX}, Y: ${e.offsetY}`);
+    // যদি offsetX < 10 হয়, তবে বুঝবেন বাম পাশের বর্ডারে ক্লিক হয়েছে
+});
+
+```
+
+### ১০. ক্লিক হোল্ড বা লং প্রেস (Long Press)
+
+এটি করতে `setTimeout` ব্যবহার করতে হয়।
+
+```javascript
+let pressTimer;
+
+element.addEventListener('mousedown', () => {
+    pressTimer = setTimeout(() => {
+        console.log("Long Press Detected!");
+    }, 1000); // ১ সেকেন্ড ধরে রাখলে
+});
+
+element.addEventListener('mouseup', () => {
+    clearTimeout(pressTimer); // ১ সেকেন্ডের আগে ছেড়ে দিলে টাইমার বাতিল
+});
+
+```
+
 ## ৫. কীবোর্ড ইভেন্ট (Keyboard Events)
 
 **গভীর তত্ত্ব (Deep Theory):**

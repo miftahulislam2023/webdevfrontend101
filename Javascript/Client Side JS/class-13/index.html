@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Mouse Events Masterclass</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            height: 200vh;
+            background: #f4f4f4;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* 1. Custom Menu */
+        #custom-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            display: none;
+            list-style: none;
+            padding: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #custom-menu li {
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* 2. Folder Style */
+        .folder {
+            width: 100px;
+            height: 80px;
+            background: #ffd700;
+            margin: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .folder.is-open {
+            background: #ffa500;
+            transform: scale(1.1);
+        }
+
+        /* 4. Hover Card */
+        .card {
+            width: 200px;
+            height: 100px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        /* 6. No Select */
+        .no-select {
+            user-select: none;
+            color: red;
+            margin: 20px;
+            padding: 10px;
+            border: 1px dashed red;
+            width: fit-content;
+        }
+
+        /* Mouse Tracker Text */
+        #coords {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: black;
+            color: white;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="coords">X: 0, Y: 0</div>
+
+    <ul id="custom-menu">
+        <li>Copy</li>
+        <li>Paste</li>
+        <li>Reload</li>
+    </ul>
+
+    <div class="folder">Double Click Me</div>
+
+    <div class="card">Hover Over Me</div>
+
+    <div class="no-select">You cannot select this text by double clicking!</div>
+
+    <button id="btn-complex" style="margin: 20px; padding: 15px;">Right/Middle/Long Press Me</button>
+
+    <script>
+        // 1. Context Menu
+        window.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            const menu = document.getElementById('custom-menu');
+            menu.style.top = `${e.pageY}px`;
+            menu.style.left = `${e.pageX}px`;
+            menu.style.display = 'block';
+        });
+        window.addEventListener('click', () => document.getElementById('custom-menu').style.display = 'none');
+
+        // 2. Double Click
+        document.querySelector('.folder').addEventListener('dblclick', function () {
+            this.classList.toggle('is-open');
+            this.innerText = this.classList.contains('is-open') ? "Opened!" : "Double Click Me";
+        });
+
+        // 3. Mouse Position Tracker
+        window.addEventListener('mousemove', (e) => {
+            document.getElementById('coords').innerText = `X: ${e.clientX}, Y: ${e.clientY}`;
+            // 3. Dynamic background (optional)
+            // document.body.style.backgroundColor = `rgb(${e.clientX % 255}, ${e.clientY % 255}, 200)`;
+        });
+
+        // 4. Hover Effect
+        const card = document.querySelector('.card');
+        card.addEventListener('mouseenter', () => card.style.transform = 'scale(1.1) rotate(2deg)');
+        card.addEventListener('mouseleave', () => card.style.transform = 'scale(1) rotate(0deg)');
+
+        // 6. Prevent Selection
+        document.querySelector('.no-select').addEventListener('mousedown', (e) => {
+            if (e.detail > 1) e.preventDefault();
+        });
+
+        // 7, 9, 10. Button, Offset, and Long Press
+        const btn = document.getElementById('btn-complex');
+        let pressTimer;
+
+        btn.addEventListener('mousedown', (e) => {
+            console.log(`Button pressed: ${e.button}`); // 7. Button detect
+            console.log(`Click offset: X:${e.offsetX}, Y:${e.offsetY}`); // 9. Offset detect
+
+            // 10. Long Press
+            pressTimer = setTimeout(() => {
+                alert("Long Press Detected!");
+            }, 1000);
+        });
+
+        btn.addEventListener('mouseup', () => clearTimeout(pressTimer));
+
+    </script>
+</body>
+
+</html>
