@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout and Keyboard Events</title>
+</head>
+
+<body>
+    <!-- <script>
+        // basic delay like asynchronous funtions
+        console.log("Starting timer...");
+
+        id1 = setTimeout(() => {
+            console.log("3 seconds have passed!");
+        }, 3000);
+
+        console.log("I run immediately, without waiting.");
+
+        // passing arguments
+        function greet(name, role) {
+            console.log(`Hello, ${name}. You are logged in as: ${role}`);
+        }
+
+        // Passes 'Alice' and 'Admin' as arguments after 2 seconds
+        id2 = setTimeout(greet, 5000, "Alice", "Admin");
+
+        console.log(id1)
+        console.log(id2)
+
+        clearTimeout(id2)
+
+        setTimeout(() => {
+            console.log("I am last, even with 0ms delay.");
+        }, 0);
+
+        console.log("I am first.");
+        console.log("I am second.");
+
+    </script> -->
+    <input type="text" id="detector" placeholder="Type something...">
+    <p id="status"></p>
+
+    <script>
+        const input = document.querySelector('#detector');
+        const status = document.querySelector('#status');
+
+        input.addEventListener('keydown', (e) => {
+            const isCaps = e.getModifierState("CapsLock");
+            console.log(e)
+            status.innerHTML = `Key: <b>${e.key}</b> | Code: <b>${e.code}</b> <br> 
+                        Caps Lock is: ${isCaps ? "ON" : "OFF"}`;
+        });
+
+        window.addEventListener('keydown', (e) => {
+            // macOS এর জন্য metaKey (Command) এবং Windows এর জন্য ctrlKey
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault(); // ব্রাউজারের ডিফল্ট সেভ ডায়ালগ বন্ধ
+                alert('Custom Save: আপনার ফাইলটি ডাটাবেসে সেভ করা হয়েছে!');
+            }
+        });
+    </script>
+
+    <div id="player" style="width:50px; height:50px; background:red; position:absolute; top:100px; left:100px;"></div>
+
+    <script>
+        const player = document.querySelector('#player');
+        let topPos = 100;
+        let leftPos = 100;
+
+        window.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowUp':
+                case 'w':
+                    topPos -= 20;
+                    break;
+                case 'ArrowDown':
+                case 's':
+                    topPos += 20;
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                    leftPos -= 20;
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                    leftPos += 20;
+                    break;
+            }
+            player.style.top = topPos + 'px';
+            player.style.left = leftPos + 'px';
+        });
+    </script>
+    <script>
+        // ↑ ↑ ↓ ↓ ← → ← → b a
+        const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let inputCode = [];
+
+        window.addEventListener('keyup', (e) => {
+            inputCode.push(e.key);
+            // console.log(inputCode)
+            inputCode = inputCode.slice(-secretCode.length); // শেষের ১০টি কি রাখা
+            console.log(inputCode)
+            if (inputCode.join('') === secretCode.join('')) {
+                alert('🎉 Secret Mode Activated! 🎉');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Event Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        #ball {
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px #ff4757;
+        }
+
+        #score-board {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            pointer-events: none; /* যাতে মাউস ক্লিক স্কোরবোর্ডে বাধা না দেয় */
+        }
+
+        /* কাস্টম ট্রেইল এফেক্ট */
+        .trail {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="score-board">Score: 0</div>
+        <div id="ball"></div>
+    </div>
+
+    <script>
+        const ball = document.getElementById('ball');
+        const scoreBoard = document.getElementById('score-board');
+        const container = document.getElementById('game-container');
+        
+        let score = 0;
+
+        // ১. mouseenter: মাউস বলের কাছে গেলেই সে পালিয়ে যাবে
+        ball.addEventListener('mouseenter', () => {
+            moveBall();
+        });
+
+        // ২. mousedown: বলের ওপর ক্লিক (বা চাপ) দিলে স্কোর বাড়বে
+        ball.addEventListener('mousedown', (e) => {
+            score++;
+            scoreBoard.innerText = `Score: ${score}`;
+            ball.style.backgroundColor = '#2ed573'; // সফল ক্লিকে রঙ পরিবর্তন
+            
+            // ক্লিক করার পর বল আবার নতুন জায়গায় চলে যাবে
+            setTimeout(moveBall, 100);
+        });
+
+        // ৩. mousemove: মাউস মুভমেন্টের সাথে ট্রেইল তৈরি করা
+        window.addEventListener('mousemove', (e) => {
+            createTrail(e.pageX, e.pageY);
+        });
+
+        // ৪. contextmenu: রাইট ক্লিক করলে স্পেশাল পাওয়ার (বল ছোট হওয়া)
+        window.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // ডিফল্ট মেনু বন্ধ করা
+            ball.style.transform = 'scale(0.5)';
+            setTimeout(() => ball.style.transform = 'scale(1)', 1000);
+        });
+
+        // বলকে র‍্যান্ডম পজিশনে পাঠানোর ফাংশন
+        function moveBall() {
+            const maxX = window.innerWidth - 50;
+            const maxY = window.innerHeight - 50;
+
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            ball.style.left = `${newX}px`;
+            ball.style.top = `${newY}px`;
+            ball.style.backgroundColor = '#ff4757'; // রঙ রিসেট
+        }
+
+        // ট্রেইল তৈরি করার ফাংশন
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+
+            // ০.৫ সেকেন্ড পর ট্রেইল মুছে ফেলা
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        }
+
+        // গেম শুরুতেই বলকে একবার মুভ করা
+        moveBall();
+    </script>
+</body>
+</html>
