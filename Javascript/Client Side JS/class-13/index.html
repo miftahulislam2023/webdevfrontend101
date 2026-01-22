@@ -104,11 +104,12 @@
         // 1. Context Menu
         window.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            const menu = document.getElementById('custom-menu');
+            const menu = document.querySelector('#custom-menu');
             menu.style.top = `${e.pageY}px`;
             menu.style.left = `${e.pageX}px`;
             menu.style.display = 'block';
         });
+
         window.addEventListener('click', () => document.getElementById('custom-menu').style.display = 'none');
 
         // 2. Double Click
@@ -120,8 +121,8 @@
         // 3. Mouse Position Tracker
         window.addEventListener('mousemove', (e) => {
             document.getElementById('coords').innerText = `X: ${e.clientX}, Y: ${e.clientY}`;
-            // 3. Dynamic background (optional)
-            // document.body.style.backgroundColor = `rgb(${e.clientX % 255}, ${e.clientY % 255}, 200)`;
+            // Dynamic background (optional)
+            // document.body.style.backgroundColor = `rgb(${e.clientX % 255}, ${e.clientY % 255}, ${(e.clientY +  e.clientX) % 255})`;
         });
 
         // 4. Hover Effect
@@ -131,6 +132,7 @@
 
         // 6. Prevent Selection
         document.querySelector('.no-select').addEventListener('mousedown', (e) => {
+            console.log(e.detail)
             if (e.detail > 1) e.preventDefault();
         });
 
