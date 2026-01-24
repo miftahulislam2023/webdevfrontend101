@@ -335,8 +335,7 @@ element.addEventListener('mouseup', () => {
 
 ```
 চমৎকার একটি তালিকা তৈরি করেছেন! কীবোর্ড ইভেন্টগুলো ইন্টারঅ্যাক্টিভ ওয়েব অ্যাপ্লিকেশন তৈরির প্রাণ। আপনার দেওয়া ১০টি সিনারিও এবং তত্ত্বের ওপর ভিত্তি করে নিচে বিস্তারিত ব্যাখ্যা ও কোড উদাহরণ দেওয়া হলো:
-
-## কীবোর্ড ইভেন্টের গভীর তত্ত্ব (Deep Theory)
+## ৫. কীবোর্ড ইভেন্টের গভীর তত্ত্ব (Deep Theory)
 
 কীবোর্ড ইভেন্ট মূলত তিনটি প্রধান ধাপে ঘটে:
 
@@ -348,9 +347,6 @@ element.addEventListener('mouseup', () => {
 
 * **`event.key`:** এটি কি-এর মান নির্দেশ করে (যেমন: 'a', 'A', 'Enter', 'Shift')। এটি ইউজারের কিবোর্ড লেআউট অনুযায়ী পরিবর্তিত হয়।
 * **`event.code`:** এটি কিবোর্ডের ফিজিক্যাল পজিশন নির্দেশ করে (যেমন: 'KeyA', 'Enter', 'ShiftLeft')। এটি লেআউট পরিবর্তন করলেও বদলায় না।
-
-## প্র্যাকটিক্যাল কোড উদাহরণ
-
 ### ১. কোন কি চাপা হয়েছে এবং ২. ক্যাপসলক ডিটেকশন
 
 ইউজার যখন টাইপ করবে, তখন তাকে জানানো হবে কোন কি চাপা হয়েছে এবং ক্যাপসলক অন আছে কিনা।
@@ -510,7 +506,6 @@ window.addEventListener('mousedown', () => {
 });
 
 ```
-
 ## ৬. প্রজেক্ট: কী-কোড ডিটেক্টর (KeyCode Mini-Project Extension)
 
 এই প্রজেক্টে আমরা আরও কিছু ফিচার যোগ করব।
@@ -557,8 +552,22 @@ window.addEventListener('keydown', (e) => {
 
 **কিছু সিনারিও:**
 
-1. **লাইভ সার্চ ফিল্টার:** লিস্ট ফিল্টার করা।
-2. **লাইভ ক্যারেক্টার কাউন্ট (টুইটার স্টাইল):**
+### ১. লাইভ সার্চ ফিল্টার
+
+ইউজার টাইপ করার সাথে সাথে লিস্ট থেকে আইটেমগুলো ফিল্টার করা।
+
+```javascript
+searchInput.addEventListener('input', (e) => {
+    const filter = e.target.value.toLowerCase();
+    listItems.forEach(item => {
+        item.style.display = item.innerText.toLowerCase().includes(filter) ? '' : 'none';
+    });
+});
+
+```
+
+### ২. লাইভ ক্যারেক্টার কাউন্ট (টুইটার স্টাইল)
+
 ```javascript
 input.addEventListener('input', (e) => {
     const count = e.target.value.length;
@@ -566,21 +575,106 @@ input.addEventListener('input', (e) => {
 });
 
 ```
-3. **চেকবক্স টগল:** `e.target.checked` (true/false)।
-4. **সিলেক্ট ড্রপডাউন ভ্যালু:** `change` ইভেন্টে `e.target.value`।
-5. **Cut/Copy/Paste ডিটেক্ট:**
+
+### ৩. চেকবক্স টগল
+
+শর্ত বা টার্মস অ্যান্ড কন্ডিশন একসেপ্ট করলে সাবমিট বাটন এনাবেল করা।
+
+```javascript
+checkbox.addEventListener('change', (e) => {
+    submitBtn.disabled = !e.target.checked;
+});
+
+```
+
+### ৪. সিলেক্ট ড্রপডাউন ভ্যালু
+
+ড্রপডাউন থেকে কিছু সিলেক্ট করলে সেটি সাথে সাথে ডিসপ্লে করা।
+
+```javascript
+select.addEventListener('change', (e) => {
+    console.log("Selected Value: " + e.target.value);
+});
+
+```
+
+### ৫. Cut/Copy/Paste ডিটেক্ট
+
+সিকিউরিটি বা ইউজার এক্সপেরিয়েন্সের জন্য কপি-পেস্ট বন্ধ রাখা।
+
 ```javascript
 input.addEventListener('paste', (e) => {
-    console.log('Paste করা নিষিদ্ধ!');
+    alert('Paste করা নিষিদ্ধ!');
     e.preventDefault();
 });
 
 ```
-6. **রেঞ্জ স্লাইডার (Volume Control):** `input` ইভেন্ট দিয়ে ভলিউম বাড়ানো কমানো।
-7. **ফোকাস এফেক্ট:** `focus` এ ব্যাকগ্রাউন্ড কালার চেঞ্জ।
-8. **Blur ভ্যালিডেশন:** ইনপুট থেকে বের হলে চেক করা ইমেইল ঠিক আছে কিনা।
-9. **অটো-কমপ্লিট:** টাইপ করার সাথে সাথে সাজেশান দেখানো।
-10. **দুটি পাসওয়ার্ড ম্যাচিং চেক:** কনফার্ম পাসওয়ার্ড ফিল্ডে `input` ইভেন্ট।
+
+### ৬. রেঞ্জ স্লাইডার (Volume Control)
+
+স্লাইডার মুভ করার সাথে সাথে ভ্যালু আপডেট করা।
+
+```javascript
+rangeInput.addEventListener('input', (e) => {
+    volumeLabel.innerText = `Volume: ${e.target.value}%`;
+});
+
+```
+
+### ৭. ফোকাস এফেক্ট
+
+ইউজার যখন ইনপুট ফিল্ডে ক্লিক করবে তখন স্টাইল পরিবর্তন।
+
+```javascript
+input.addEventListener('focus', (e) => {
+    e.target.style.backgroundColor = '#f0f8ff';
+    e.target.style.border = '2px solid blue';
+});
+
+```
+
+### ৮. Blur ভ্যালিডেশন
+
+ইউজার যখন ইনপুট ফিল্ড থেকে বের হয়ে আসবে তখন ডেটা চেক করা।
+
+```javascript
+emailInput.addEventListener('blur', (e) => {
+    if (!e.target.value.includes('@')) {
+        errorMsg.innerText = "সঠিক ইমেইল দিন!";
+    }
+});
+
+```
+
+### ৯. অটো-কমপ্লিট (Suggestions)
+
+টাইপ করার সাথে সাথে একটি লিস্ট থেকে সাজেশান দেখানো।
+
+```javascript
+input.addEventListener('input', (e) => {
+    const val = e.target.value;
+    // এখানে সাজেশান পপ-আপ দেখানোর লজিক হবে
+    if(val.length > 2) showSuggestions(val);
+});
+
+```
+
+### ১০. পাসওয়ার্ড ম্যাচিং চেক
+
+কনফার্ম পাসওয়ার্ড ফিল্ডে টাইপ করার সময় চেক করা।
+
+```javascript
+confirmPass.addEventListener('input', () => {
+    if (pass.value === confirmPass.value) {
+        status.innerText = "Match!";
+        status.style.color = "green";
+    } else {
+        status.innerText = "Mismatch!";
+        status.style.color = "red";
+    }
+});
+
+```
 ## ৮. ফর্ম সাবমিশন (Form Submission & FormData)
 
 **গভীর তত্ত্ব (Deep Theory):**
@@ -610,59 +704,240 @@ form.addEventListener('submit', async (e) => {
 });
 
 ```
-## ৯. ইভেন্ট বাবলিং ও ক্যাপচারিং (Bubbling & Capturing)
+## ৯. ইভেন্ট বাবলিং, ক্যাপচারিং, ডেলিগেশন(Bubbling, Capturing, Delegation)
 
-**গভীর তত্ত্ব (Deep Theory):**
-ইভেন্ট ফ্লো এর ৩টি ধাপ:
+### ১. ইভেন্ট প্রপাগেশন (Event Propagation)
 
-1. **Capturing Phase:** ইভেন্ট উপর (Window) থেকে নিচে নামে।
-2. **Target Phase:** ইভেন্ট টার্গেট এলিমেন্টে পৌঁছায়।
-3. **Bubbling Phase:** ইভেন্ট নিচ থেকে আবার উপরে উঠে যায়।
-ডিফল্টভাবে ইভেন্ট লিসেনার Bubbling ফেজে কাজ করে।
+যখন আপনি কোনো এলিমেন্টে (যেমন একটি বাটনে) ক্লিক করেন, তখন ব্রাউজার শুধুমাত্র সেই বাটনটিতেই ইভেন্ট চালায় না। ইভেন্টটি পুরো **DOM Tree** জুড়ে ভ্রমণ করে। এই ভ্রমণ বা চলাচলের তিনটি ধাপ বা "Phase" আছে:
 
-**কিছু সিনারিও:**
+1. **Capturing Phase:** ইভেন্টটি একদম উপর থেকে (Window → Document → Body) নামতে নামতে টার্গেট এলিমেন্টের প্যারেন্ট পর্যন্ত আসে।
+2. **Target Phase:** ইভেন্টটি নির্দিষ্ট এলিমেন্টটিতে (টার্গেট) পৌঁছায় এবং হ্যান্ডলার রান করে।
+3. **Bubbling Phase:** ইভেন্টটি আবার টার্গেট থেকে উপরের দিকে (Target → Parent → Body → Document → Window) উঠতে থাকে। ঠিক যেমন পানির নিচে বুদবুদ (Bubble) উপরের দিকে ওঠে।
 
-1. **বাবলিং বোঝা:** চাইল্ডে ক্লিক করলে প্যারেন্টের লিসেনার ফায়ার হওয়া।
-2. **`stopPropagation`:** বাবলিং বন্ধ করা।
+**Bubbling এর সুবিধা (Event Delegation):**
+ধরুন আপনার একটি `<form>` আছে যার ভেতরে ১০টি ইনপুট ফিল্ড। ১০টি ফিল্ডে আলাদা ইভেন্ট লিসেনার না লাগিয়ে, আপনি শুধু প্যারেন্ট `<form>`-এ একটি লিসেনার লাগাতে পারেন। কারণ ইনপুটের ইভেন্টটি "বাবল" হয়ে ফর্মে আসবেই।
+
+> **নোট:** সব ইভেন্ট বাবল করে না। যেমন: `focus`, `blur`, এবং `scroll` বাবল করে না। `load` ইভেন্ট `document` পর্যন্ত বাবল করে কিন্তু `window` পর্যন্ত যায় না।
+
+**Capturing এর ব্যবহার:**
+সাধারণত আমরা Bubbling ফেসেই কাজ করি। কিন্তু যদি `addEventListener`-এ ৩য় আর্গুমেন্ট `true` বা `{capture: true}` দেন, তবে ইভেন্টটি Capturing Phase-এ ধরা হবে (অর্থাৎ ইভেন্ট টার্গেটে পৌঁছানোর আগেই)। এটি ডিবাগিং বা ড্র্যাগ-এন্ড-ড্রপ সিস্টেমে কাজে লাগে।
+
+**উদাহরণ কোড:**
+
+```html
+<div id="grandparent" style="padding: 20px; background: red;">
+  Grandparent
+  <div id="parent" style="padding: 20px; background: yellow;">
+    Parent
+    <button id="child">Click Me!</button>
+  </div>
+</div>
+
+<script>
+  // Bubbling উদাহরণ (ডিফল্ট) - নিচ থেকে উপরে যাবে
+  document.getElementById('child').addEventListener('click', () => {
+    console.log('১. Child (Button) ক্লিক হয়েছে!');
+  });
+
+  document.getElementById('parent').addEventListener('click', () => {
+    console.log('২. Parent ক্লিক হয়েছে! (Bubbling)');
+  });
+
+  // Capturing উদাহরণ (true দেওয়া আছে) - উপর থেকে নিচে আসবে
+  document.getElementById('grandparent').addEventListener('click', () => {
+    console.log('০. Grandparent ক্যাপচার হয়েছে! (Capturing Phase)');
+  }, true); 
+  
+  // আউটপুট ক্রম হবে:
+  // ০. Grandparent (সবার আগে, কারণ এটা ক্যাপচারিং)
+  // ১. Child (টার্গেট)
+  // ২. Parent (বাবলিং)
+</script>
+
+```
+
+### ২. ইভেন্ট ক্যানসেলেশন (Event Cancellation)
+
+ব্রাউজারে ইভেন্ট বন্ধ বা বাতিল করার দুটি আলাদা অর্থ আছে:
+
+**ক. ডিফল্ট অ্যাকশন বন্ধ করা (`preventDefault`)**
+ব্রাউজারের নিজস্ব কিছু আচরণ থাকে। যেমন: লিংকে ক্লিক করলে অন্য পেজে যাওয়া, ফর্মে সাবমিট করলে পেজ রিলোড হওয়া। আপনি `event.preventDefault()` মেথড কল করে এই আচরণ থামাতে পারেন।
+
+> **সতর্কতা:** যদি `passive: true` অপশন দিয়ে লিসেনার সেট করা থাকে, তবে `preventDefault()` কাজ করবে না।
+
+**খ. ইভেন্ট প্রপাগেশন বন্ধ করা (`stopPropagation`)**
+আপনি যদি চান ইভেন্টটি প্যারেন্ট এলিমেন্ট পর্যন্ত না পৌঁছাক (বাবলিং বন্ধ করা) অথবা চাইল্ড এলিমেন্টে না আসুক (ক্যাপচারিং বন্ধ করা), তবে `event.stopPropagation()` ব্যবহার করতে হয়।
+
+* `stopPropagation()`: ইভেন্টটি অন্য এলিমেন্টে যাওয়া বন্ধ করে, কিন্তু একই এলিমেন্টে যদি আরও লিসেনার থাকে তবে সেগুলো রান করবে।
+* `stopImmediatePropagation()`: ইভেন্টটি অন্য এলিমেন্টে যাওয়াও বন্ধ করে এবং এই এলিমেন্টের বাকি লিসেনারগুলোকেও থামিয়ে দেয়।
+
+**উদাহরণ কোড:**
+
 ```javascript
-child.addEventListener('click', (e) => {
-    e.stopPropagation(); // আর উপরে যাবে না
+const link = document.querySelector('a'); // মনে করুন এটি একটি গুগল এর লিংক
+
+link.addEventListener('click', function(event) {
+  // ১. ব্রাউজারের ডিফল্ট আচরণ (লিংকে ঢুকা) বন্ধ করা হলো
+  event.preventDefault(); 
+  console.log("লিংকে ক্লিক করা হয়েছে, কিন্তু পেজ লোড হবে না।");
+
+  // ২. ইভেন্টটি যেন প্যারেন্ট এলিমেন্টে (বাবল হয়ে) না যায়
+  event.stopPropagation();
 });
 
 ```
-3. **`stopImmediatePropagation`:** একই এলিমেন্টে অন্য লিসেনার থাকলে সেগুলোও বন্ধ করে দেয়।
-4. **প্যারেন্ট থেকে চাইল্ড হ্যান্ডেল:** প্যারেন্টে লিসেনার বসিয়ে বাবলিং এর সুবিধা নেওয়া।
-5. **মডাল বা পপ-আপ বন্ধ করা:** মডালের ব্যাকগ্রাউন্ডে (প্যারেন্ট) ক্লিক করলে বন্ধ হবে, কিন্তু মডালের বডিতে (চাইল্ড) ক্লিক করলে বন্ধ হবে না (এখানে `stopPropagation` লাগে)।
-6. **Capturing লিসেনার:** `addEventListener(..., {capture: true})`।
-7. **নেস্টেড মেনু:** সাব-মেনু ওপেন/ক্লোজ লজিক।
-8. **অ্যানালিটিক্স ট্র্যাকিং:** বডির বাবলিং ব্যবহার করে পুরো পেজের সব ক্লিক ট্র্যাক করা।
-9. **ফর্ম ভ্যালিডেশন ট্রিকস:** বাবলিং ব্যবহার করে এরর মেসেজ শো করা।
-10. **রিয়েক্ট বা ফ্রেমওয়ার্ক:** রিয়েক্ট পর্দার আড়ালে বাবলিং ব্যবহার করেই ইভেন্ট হ্যান্ডেল করে (Synthetic Events)।
-## ১০. ইভেন্ট ডেলিগেশন (Event Delegation: Masterclass)
 
-**গভীর তত্ত্ব (Deep Theory):**
-ডেলিগেশন মেমোরি লিক (Memory Leak) কমায়। ডাইনামিকলি তৈরি হওয়া এলিমেন্টে (যেমন জাভাস্ক্রিপ্ট দিয়ে পরে যোগ করা লিস্ট আইটেম) সাধারণ লিসেনার কাজ করে না, কিন্তু ডেলিগেশন কাজ করে।
+### ৩. কাস্টম ইভেন্ট ডিসপ্যাচ করা (Dispatching Custom Events)
 
-**কিছু সিনারিও:**
+জাভাস্ক্রিপ্টের বিল্ট-ইন ইভেন্ট (click, scroll) ছাড়াও আপনি নিজের ইভেন্ট তৈরি করতে পারেন। এটি বড় অ্যাপ্লিকেশনে খুব কাজে লাগে যেখানে এক মডিউল আরেক মডিউলকে সিগন্যাল দিতে চায়।
 
-1. **টুডু লিস্ট:** নতুন আইটেমে ডিলিট বাটন কাজ করানো।
+এজন্য `CustomEvent` কনস্ট্রাক্টর এবং `dispatchEvent` মেথড ব্যবহার করা হয়। আপনি `detail` প্রপার্টির মাধ্যমে ইভেন্টের সাথে ডেটা পাঠাতে পারেন।
+
+**বাস্তব জীবনের উদাহরণ:**
+ধরুন, আপনার অ্যাপ কোনো নেটওয়ার্ক রিকোয়েস্ট পাঠাচ্ছে। আপনি চান যতক্ষণ লোডিং হবে, ততক্ষণ ইউজারকে একটি "Spinner" বা লোডিং আইকন দেখানো হোক।
+
+**উদাহরণ কোড:**
+
 ```javascript
-ul.addEventListener('click', (e) => {
-    if(e.target.classList.contains('delete-btn')) {
-        e.target.parentElement.remove();
-    }
+// ১. UI বা ইউজার ইন্টারফেস হ্যান্ডলার (যে স্পিনার দেখাবে/লুকাবে)
+document.addEventListener("app-busy", (e) => {
+  if (e.detail.isBusy) {
+    console.log("⏳ স্পিনার দেখানো হচ্ছে..."); // showSpinner()
+  } else {
+    console.log("✅ স্পিনার লুকানো হয়েছে!"); // hideSpinner()
+  }
+});
+
+// ২. নেটওয়ার্ক বা লজিক মডিউল
+function fetchData() {
+  // কাজ শুরু: ইভেন্ট ডিসপ্যাচ করা হলো
+  document.dispatchEvent(new CustomEvent("app-busy", { 
+    detail: { isBusy: true } 
+  }));
+
+  // নেটওয়ার্ক রিকোয়েস্ট সিমুলেশন (২ সেকেন্ড পর শেষ হবে)
+  setTimeout(() => {
+    console.log("ডেটা লোড শেষ।");
+
+    // কাজ শেষ: আবার ইভেন্ট ডিসপ্যাচ করা হলো
+    document.dispatchEvent(new CustomEvent("app-busy", { 
+      detail: { isBusy: false } 
+    }));
+  }, 2000);
+}
+
+// ফাংশনটি কল করি
+fetchData();
+
+```
+
+### সারসংক্ষেপ:
+
+| বিষয় | কাজ |
+  |
+| **Bubbling** | ইভেন্ট নিচ থেকে উপরে (Child → Parent) যায়। |
+| **Capturing** | ইভেন্ট উপর থেকে নিচে (Parent → Child) আসে। |
+| **preventDefault()** | ব্রাউজারের ডিফল্ট কাজ (যেমন লিংকে যাওয়া) থামায়। |
+| **stopPropagation()** | ইভেন্টকে অন্য এলিমেন্টে ছড়ানো বন্ধ করে। |
+| **CustomEvent** | নিজের তৈরি ইভেন্ট এবং ডেটা (`detail`) পাঠানোর জন্য ব্যবহৃত হয়। |
+
+**Event Delegation** হলো জাভাস্ক্রিপ্টের অন্যতম শক্তিশালী এবং জনপ্রিয় একটি প্যাটার্ন, যা **Event Bubbling** এর ওপর ভিত্তি করে কাজ করে।
+
+সহজ কথায়: ১০০টি বাচ্চার (Child Elements) পেছনে ১০০ জন আলাদা ন্যানি (Listener) না রেখে, ঘরের দরজায় একজন গার্ড (Parent Listener) রাখা—যিনি সব বাচ্চার দিকে খেয়াল রাখবেন।
+
+### ইভেন্ট ডেলিগেশন (Event Delegation) কী?
+
+সাধারণত, আমরা যদি একটি লিস্টের প্রতিটি আইটেমে ক্লিক ইভেন্ট চাই, আমরা লুপ চালিয়ে প্রতিটিতে `addEventListener` যোগ করি। কিন্তু ইভেন্ট ডেলিগেশনে আমরা তা করি না।
+
+আমরা **প্যারেন্ট (Parent)** এলিমেন্টে মাত্র **একটি** লিসেনার যোগ করি। যখনই কোনো চাইল্ড এলিমেন্টে ক্লিক করা হয়, ইভেন্টটি **Bubble** হয়ে প্যারেন্টে আসে, এবং প্যারেন্ট তখন চেক করে দেখে ক্লিকটি আসলে কোথায় বা কোন চাইল্ডের ওপর পড়েছে।
+
+### কেন এটি ব্যবহার করবেন? (সমস্যা ও সমাধান)
+
+**সমস্যা:** ধরুন, আপনার একটি লিস্ট আছে যেখানে ১০,০০০ আইটেম আছে।
+১. যদি ১০,০০০টি `addEventListener` তৈরি করেন, তবে ব্রাউজারের প্রচুর মেমোরি খরচ হবে এবং পেজ স্লো হয়ে যাবে।
+২. যদি আপনি জাভাস্ক্রিপ্ট দিয়ে নতুন কোনো আইটেম যোগ করেন (Dynamically Added Elements), তবে সেই নতুন আইটেমে পুরাতন ইভেন্ট লিসেনার কাজ করবে না।
+
+**সমাধান:** প্যারেন্টে ১টি লিসেনার থাকলে মেমোরি বাঁচে এবং ভবিষ্যতে যোগ হওয়া আইটেমগুলোও অটোমেটিক কাজ করে।
+
+### ব্যবহারিক উদাহরণ: একটি ডাইনামিক To-Do List
+
+নিচের উদাহরণে আমরা একটি `<ul>` (প্যারেন্ট) এ লিসেনার লাগাব। এর ভেতরে থাকা বাটন বা টেক্সটে ক্লিক করলে প্যারেন্ট সেটা হ্যান্ডেল করবে।
+
+#### HTML
+
+```html
+<div id="app">
+  <h3>আমার কাজের তালিকা</h3>
+  <input type="text" id="newTask" placeholder="নতুন কাজ লিখুন...">
+  <button id="addBtn">যোগ করুন</button>
+  
+  <ul id="taskList">
+    <li>কফি খাওয়া <button class="delete-btn">মুছুন</button></li>
+    <li>বই পড়া <button class="delete-btn">মুছুন</button></li>
+  </ul>
+</div>
+
+```
+
+#### JavaScript (Event Delegation)
+
+```javascript
+const taskList = document.getElementById('taskList');
+const addBtn = document.getElementById('addBtn');
+const newTaskInput = document.getElementById('newTask');
+
+// ১. নতুন কাজ যোগ করার ফাংশন
+addBtn.addEventListener('click', () => {
+  const text = newTaskInput.value;
+  if (text !== "") {
+    const newItem = `<li>${text} <button class="delete-btn">মুছুন</button></li>`;
+    taskList.insertAdjacentHTML('beforeend', newItem);
+    newTaskInput.value = ""; // ইনপুট খালি করা হলো
+  }
+});
+
+// ২. ইভেন্ট ডেলিগেশন (Event Delegation)
+// আমরা প্রতিটি 'মুছুন' বাটনে লিসেনার না লাগিয়ে, পুরো 'taskList'-এ ১টি লিসেনার লাগাচ্ছি।
+
+taskList.addEventListener('click', function(event) {
+  
+  // event.target আমাদের বলে দেয় ঠিক কোথায় ক্লিক পড়েছে
+  const clickedElement = event.target;
+
+  // ক. যদি ইউজার 'মুছুন' বাটনে ক্লিক করে
+  if (clickedElement.className === 'delete-btn') {
+    const li = clickedElement.parentElement; // বাটনের প্যারেন্ট (li) খুঁজে বের করা
+    li.remove(); // সেই li রিমুভ করা
+    console.log("একটি কাজ মুছে ফেলা হয়েছে!");
+  }
+
+  // খ. যদি ইউজার লেখার ওপর ক্লিক করে (কাজ সম্পন্ন বোঝাতে)
+  else if (clickedElement.tagName === 'LI') {
+    clickedElement.style.textDecoration = "line-through";
+    clickedElement.style.color = "gray";
+    console.log("কাজ সম্পন্ন হয়েছে!");
+  }
+  
 });
 
 ```
-2. **টেবিল রো (Table Row) অ্যাকশন:** বিশাল টেবিলের প্রতি রো-তে লিসেনার না বসিয়ে টেবিলে বসানো।
-3. **গ্যালারি ইমেজ প্রিভিউ:** গ্যালারি কন্টেইনারে ক্লিক হ্যান্ডেল করে ইমেজ সোর্স নেওয়া।
-4. **কীবোর্ড ন্যাভিগেশন মেনু:** মেনুবারে ডেলিগেশন।
-5. **ট্যাগ ইনপুট সিস্টেম:** ট্যাগ রিমুভ করা।
-6. **ই-কমার্স কার্ট:** আইটেম রিমুভ বা কোয়ান্টিটি বাড়ানো।
-7. **কমেন্ট সেকশন:** রিপ্লাই বাটন হ্যান্ডেল করা।
-8. **ট্যাব (Tabs) তৈরি:** ট্যাব কন্টেইনারে লিসেনার।
-9. **গেমবোর্ড (Tic-Tac-Toe):** প্রতিটি সেলের বদলে বোর্ডে লিসেনার।
-10. **`closest()` মেথড ব্যবহার:** ডেলিগেশনে `e.target.closest('.btn')` ব্যবহার করা সবচেয়ে নিরাপদ, কারণ ইউজার আইকনে ক্লিক করতে পারে যা বাটনের ভেতরে।
+
+### কোডটি কীভাবে কাজ করছে?
+
+১. **Bubbling:** যখন আপনি "মুছুন" বাটনে ক্লিক করেন, ইভেন্টটি বাটন থেকে শুরু হয়ে `li` হয়ে `ul` (`taskList`) পর্যন্ত বাবল করে বা ভেসে ওঠে।
+২. **Detection:** `taskList`-এ বসে থাকা ইভেন্ট লিসেনারটি সেই ক্লিক ধরে ফেলে।
+৩. **Identification (`event.target`):** আমরা `event.target` ব্যবহার করে চেক করি—
+
+* ক্লিকটি কি `delete-btn` ক্লাসের কারো ওপর পড়েছে? তাহলে রিমুভ করো।
+* ক্লিকটি কি `LI` ট্যাগের ওপর পড়েছে? তাহলে দাগ কেটে দাও (Strikethrough)।
+৪. **Dynamic Support:** আপনি ইনপুট ফিল্ড দিয়ে নতুন যত কাজই যোগ করুন না কেন, আপনাকে নতুন করে ইভেন্ট লিসেনার লাগাতে হবে না। `ul`-এর লিসেনারটি নতুন চাইল্ডদের জন্যও কাজ করবে।
+
+### এক নজরে সুবিধাগুলো
+
+* **মেমোরি সাশ্রয়:** হাজার হাজার লিসেনারের বদলে মাত্র ১টি লিসেনার।
+* **ডাইনামিক এলিমেন্ট:** পরে জাভাস্ক্রিপ্ট দিয়ে তৈরি করা এলিমেন্টগুলোও ইভেন্ট পায়।
+* **ক্লিন কোড:** কোড অনেক ছোট এবং গোছানো থাকে।
+
 ## ১১. পেজ লোডিং ও উইন্ডো ইভেন্ট (Page & Window Events)
 
 **গভীর তত্ত্ব (Deep Theory):**

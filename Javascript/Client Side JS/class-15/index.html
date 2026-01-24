@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Code Detector</title>
+</head>
+
+<body>
+    <div id="insert"></div>
+    <script>
+        // function handleKeydown(e) {
+        //     div.textContent += e.code
+        // }
+        // div = document.createElement('div')
+        // document.body.appendChild(div)
+        // document.addEventListener('keydown', handleKeydown)
+
+        window.addEventListener('keydown', (e) => {
+            const insert = document.getElementById('insert');
+
+            // অবজেক্ট বানিয়ে লুপ চালানো
+            const keyCodes = {
+                'e.key': e.key === ' ' ? 'Space' : e.key,
+                'e.code': e.code,
+                'e.keyCode': e.keyCode,
+                'Ctrl Key?': e.ctrlKey ? 'Yes' : 'No'
+            };
+
+            let html = '';
+            for (let key in keyCodes) {
+                html += `
+        <div class="key-box">
+            <small>${key}</small>
+            <h2>${keyCodes[key]}</h2>
+        </div>`;
+            }
+            insert.innerHTML = html;
+        });
+    </script>
+</body>
+
+</html>
