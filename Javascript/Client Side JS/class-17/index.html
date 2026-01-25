@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="text1">
+        <input type="button" value="Button" name="button">
+        <input type="text" name="text2">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+    <form id="form2">
+        <input type="text" id="text1">
+        <input type="button" value="Submit">
+        <input type="text">
+        <input type="button" value="Submit">
+    </form>
+    <script>
+        form = document.querySelector('form')
+        // submitButton = document.querySelector('input[type="submit"]')
+        // form.addEventListener('submit', (e) => {
+        //     e.preventDefault()
+        //     console.log(e.target[0].value)
+        //     console.log(e.target[1])
+        //     console.log(e.target[2])
+        // })
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            data = new FormData(form);
+            console.log(data)
+            // console.log(data.keys())
+            // for(key of data.keys()) console.log(key)
+            // for(value of data.values()) console.log(value)
+            dataObj = Object.fromEntries(data.entries())
+            dataJSON = JSON.stringify(dataObj)
+            console.log(dataObj)
+            console.log(dataJSON)
+            console.log(data.get('text1'))
+            // console.log(data.get('text2'))
+            e.target.reset()
+        })
+
+        form2 = document.querySelector('#form2')
+        text1 = document.querySelector('#text1')
+        text1.addEventListener('keydown', (e) => {
+            console.log(e.key)
+            if(e.key === 'Enter')
+            form2.submit()
+        })
+    </script>
+</body>
+
+</html>

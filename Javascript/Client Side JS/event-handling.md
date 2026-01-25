@@ -936,43 +936,178 @@ taskList.addEventListener('click', function(event) {
 * **মেমোরি সাশ্রয়:** হাজার হাজার লিসেনারের বদলে মাত্র ১টি লিসেনার।
 * **ডাইনামিক এলিমেন্ট:** পরে জাভাস্ক্রিপ্ট দিয়ে তৈরি করা এলিমেন্টগুলোও ইভেন্ট পায়।
 * **ক্লিন কোড:** কোড অনেক ছোট এবং গোছানো থাকে।
-## ১১. পেজ লোডিং ও উইন্ডো ইভেন্ট (Page & Window Events)
+## ১০. পেজ লোডিং ও উইন্ডো ইভেন্ট (Page & Window Events)
 
 **গভীর তত্ত্ব (Deep Theory):**
-DOM লোড হওয়া এবং রিসোর্স (ইমেজ) লোড হওয়ার মধ্যে পার্থক্য আছে। `defer` অ্যাট্রিবিউট ব্যবহার করলে স্ক্রিপ্ট `DOMContentLoaded` এর আগে রান করে, যা আধুনিক প্র্যাকটিস।
+জাভাস্ক্রিপ্ট ইঞ্জিন যখন কোড এক্সিকিউট করে, তখন DOM (HTML স্ট্রাকচার) তৈরি হওয়া এবং পুরো পেজের রিসোর্স (যেমন ছবি, স্টাইলশিট) লোড হওয়ার মধ্যে সময়ের পার্থক্য থাকে। `defer` অ্যাট্রিবিউট ব্যবহার করলে স্ক্রিপ্ট HTML পার্সিং থামায় না, বরং ব্যাকগ্রাউন্ডে লোড হয় এবং `DOMContentLoaded` এর ঠিক আগে রান করে। এটি আধুনিক ওয়েব পারফরমেন্সের জন্য অত্যন্ত জরুরি।
 
-**কিছু সিনারিও:**
+**বিস্তারিত সিনারিও ও কোড:**
 
-1. **`DOMContentLoaded`:** HTML রেডি হলে কাজ শুরু।
+### ১. `DOMContentLoaded` (DOM রেডি ইভেন্ট)
+
+**থিওরি:** যখন ব্রাউজার সম্পূর্ণ HTML পার্স করে DOM ট্রি তৈরি শেষ করে, তখন এই ইভেন্ট ফায়ার হয়। এই সময় ছবি বা CSS লোড হওয়া বাকি থাকতে পারে। কোনো এলিমেন্ট সিলেক্ট (`querySelector`) করার আগে এটি নিশ্চিত করা উচিত।
+
 ```javascript
-document.addEventListener('DOMContentLoaded', initApp);
-
-```
-
-2. **`load` (Window):** লোডিং স্পিনার বা প্রি-লোডার হাইড করা (সব ইমেজ লোড হওয়ার পর)।
-3. **`beforeunload`:** পেজ ক্লোজ করার আগে ওয়ার্নিং দেওয়া।
-```javascript
-window.addEventListener('beforeunload', (e) => {
-    e.preventDefault();
-    e.returnValue = ''; // আধুনিক ব্রাউজারে কাস্টম মেসেজ দেখানো যায় না
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
+    // অ্যাপ ইনিশিয়ালাইজ বা এলিমেন্ট সিলেক্ট করার জন্য নিরাপদ জায়গা
+    const btn = document.getElementById('submit-btn');
+    if(btn) btn.disabled = false;
 });
 
 ```
 
-4. **`resize`:** রেসপন্সিভ চার্ট রি-ড্র করা বা মেনু হাইড করা।
-5. **`scroll` (Infinite Scroll):** পেজের শেষে পৌঁছালে নতুন ডেটা লোড করা।
+### ২. `load` (Window - সম্পূর্ণ লোডিং)
+
+**থিওরি:** যখন HTML, CSS, স্ক্রিপ্ট এবং **সব ছবি (Images)** সম্পূর্ণ লোড হয়ে যায়, তখন এই ইভেন্ট ঘটে। এটি সাধারণত লোডিং স্পিনার (Preloader) বন্ধ করার জন্য ব্যবহার করা হয়।
+
 ```javascript
-if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-   loadMoreImages();
-}
+window.addEventListener('load', () => {
+    console.log('All resources finished loading!');
+    
+    // প্রি-লোডার হাইড করা
+    const preloader = document.querySelector('.preloader');
+    preloader.style.display = 'none';
+});
 
 ```
-6. **নেটওয়ার্ক স্ট্যাটাস:** `online` এবং `offline` ইভেন্ট।
+
+### ৩. `beforeunload` (পেজ বন্ধ করার সতর্কতা)
+
+**থিওরি:** ইউজার যখন ট্যাব ক্লোজ বা রিফ্রেশ করতে যায়, তখন ডেটা লস আটকাতে এটি ব্যবহার হয়। আধুনিক ব্রাউজারে স্প্যামিং রোধে কাস্টম মেসেজ দেখানো বন্ধ করে দেওয়া হয়েছে, তবে ব্রাউজারের ডিফল্ট ওয়ার্নিং পপআপ দেখানো যায়।
+
 ```javascript
-window.addEventListener('offline', () => alert('ইন্টারনেট সংযোগ বিচ্ছিন্ন!'));
+window.addEventListener('beforeunload', (e) => {
+    // ফর্মের ডেটা সেভ না থাকলে ওয়ার্নিং দিন
+    if (formIsDirty) { 
+        e.preventDefault();
+        e.returnValue = ''; // আধুনিক ব্রাউজারের জন্য এটি আবশ্যক
+    }
+});
 
 ```
-7. **ভিজিবিলিটি চেঞ্জ:** ইউজার অন্য ট্যাবে গেলে ভিডিও পজ করা (`document.visibilityState`)।
-8. **ফুলস্ক্রিন চেঞ্জ:** ভিডিও প্লেয়ারের জন্য।
-9. **হিস্ট্রি চেঞ্জ:** `popstate` (সিঙ্গেল পেজ অ্যাপ্লিকেশনে ব্যাক বাটন হ্যান্ডেলিং)।
-10. **প্রিন্ট ইভেন্ট:** `beforeprint` এবং `afterprint` (প্রিন্ট করার সময় স্টাইল বদলানো)।
+
+### ৪. `resize` (উইন্ডো সাইজ পরিবর্তন)
+
+**থিওরি:** ব্রাউজার উইন্ডো ছোট বা বড় করলে এটি ফায়ার হয়। জাভাস্ক্রিপ্ট দিয়ে রেসপন্সিভ ডিজাইন হ্যান্ডেল করতে (যেমন: মোবাইল মেনু হাইড করা বা ক্যানভাস রি-ড্র করা) এটি লাগে।
+*(নোট: এটি খুব দ্রুত ফায়ার হয়, তাই `debounce` টেকনিক ব্যবহার করা ভালো)*।
+
+```javascript
+window.addEventListener('resize', () => {
+    console.log(`Width: ${window.innerWidth}, Height: ${window.innerHeight}`);
+    
+    // উদাহরণ: উইন্ডো বড় হলে মোবাইল মেনু বন্ধ করা
+    if (window.innerWidth > 768) {
+        document.querySelector('.mobile-menu').classList.remove('open');
+    }
+});
+
+```
+
+### ৫. `scroll` (ইনফিনিট স্ক্রল ও স্টিকি নেভিগেশন)
+
+**থিওরি:** ইউজার স্ক্রল করলে এটি ফায়ার হয়। এটি দিয়ে "Infinite Scroll" বা ন্যাভিগেশন বারকে ফিক্সড (Sticky) করা হয়।
+
+```javascript
+window.addEventListener('scroll', () => {
+    // Infinite Scroll লজিক
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = window.scrollY;
+
+    // যদি ইউজার পেজের একদম নিচে চলে আসে (৫০ পিক্সেল বাফার রাখা হয়েছে)
+    if (Math.ceil(scrolled) >= scrollableHeight - 50) {
+        console.log('Load more data now...');
+        loadMoreImages(); // নতুন ডেটা লোড করার ফাংশন
+    }
+});
+
+```
+
+### ৬. নেটওয়ার্ক স্ট্যাটাস (`online` & `offline`)
+
+**থিওরি:** ইউজার ইন্টারনেটের সাথে সংযুক্ত আছে কি না তা চেক করতে ব্যবহার হয়। এটি রিয়েল-টাইম অ্যাপ বা অফলাইন সাপোর্টের জন্য জরুরি।
+
+```javascript
+// ইন্টারনেট চলে গেলে
+window.addEventListener('offline', () => {
+    showToast('You are offline! Connection lost.');
+    document.body.classList.add('grayscale-mode'); // ভিজ্যুয়াল ফিডব্যাক
+});
+
+// ইন্টারনেট ফিরে এলে
+window.addEventListener('online', () => {
+    showToast('Back online!');
+    document.body.classList.remove('grayscale-mode');
+    syncData(); // সার্ভারে ডেটা সিঙ্ক করা
+});
+
+```
+
+### ৭. ভিজিবিলিটি চেঞ্জ (`visibilitychange`)
+
+**থিওরি:** ইউজার যখন ট্যাব পরিবর্তন করে বা ব্রাউজার মিনিমাইজ করে, তখন `document.visibilityState` পরিবর্তিত হয়। ব্যাকগ্রাউন্ডে রিসোর্স বাঁচাতে (যেমন: ভিডিও পজ করা বা এপিআই কল বন্ধ রাখা) এটি সেরা উপায়।
+
+```javascript
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        console.log('User left the tab');
+        videoPlayer.pause(); // ভিডিও পজ করা
+    } else {
+        console.log('User is back');
+        videoPlayer.play(); // ভিডিও আবার চালু করা
+    }
+});
+
+```
+
+### ৮. ফুলস্ক্রিন চেঞ্জ (`fullscreenchange`)
+
+**থিওরি:** ইউজার কোনো এলিমেন্টকে (যেমন ভিডিও প্লেয়ার) ফুলস্ক্রিন মোডে নিলে বা বের হলে এটি ডিটেক্ট করা হয়। এর মাধ্যমে কাস্টম ভিডিও প্লেয়ারের আইকন পরিবর্তন করা হয়।
+
+```javascript
+document.addEventListener('fullscreenchange', () => {
+    if (document.fullscreenElement) {
+        console.log('Entered Fullscreen Mode');
+        toggleIcon.src = 'exit-fullscreen.png';
+    } else {
+        console.log('Exited Fullscreen Mode');
+        toggleIcon.src = 'enter-fullscreen.png';
+    }
+});
+
+```
+
+### ৯. হিস্ট্রি চেঞ্জ (`popstate`)
+
+**থিওরি:** সিঙ্গেল পেজ অ্যাপ্লিকেশনে (SPA) যখন ইউজার ব্রাউজারের "Back" বা "Forward" বাটন চাপে, তখন পেজ রিলোড না হয়ে শুধু কন্টেন্ট বদলানোর জন্য এটি ব্যবহার হয়।
+
+```javascript
+window.addEventListener('popstate', (event) => {
+    console.log('Location: ' + document.location + ', State: ' + JSON.stringify(event.state));
+    
+    // উদাহরণ: হিস্ট্রি অনুযায়ী পেজ রেন্ডার করা
+    if (event.state && event.state.pageId) {
+        renderPage(event.state.pageId);
+    }
+});
+
+```
+
+### ১০. প্রিন্ট ইভেন্ট (`beforeprint` & `afterprint`)
+
+**থিওরি:** ইউজার যখন `Ctrl + P` বা প্রিন্ট অপশন দেয়। প্রিন্ট করার সময় অপ্রয়োজনীয় এলিমেন্ট (যেমন সাইডবার, বিজ্ঞাপন) লুকিয়ে রাখা এবং প্রিন্ট শেষে আবার দেখানো।
+
+```javascript
+window.addEventListener('beforeprint', () => {
+    console.log('Preparing to print...');
+    document.querySelector('.sidebar').style.display = 'none'; // সাইডবার লুকানো
+    document.querySelector('.ad-banner').style.display = 'none';
+});
+
+window.addEventListener('afterprint', () => {
+    console.log('Print dialog closed');
+    document.querySelector('.sidebar').style.display = 'block'; // আবার দেখানো
+    document.querySelector('.ad-banner').style.display = 'block';
+});
+
+```
