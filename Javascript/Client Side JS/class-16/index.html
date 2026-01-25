@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input events</title>
+</head>
+
+<body>
+    <textarea></textarea>
+    <div></div>
+    <input type="range"><br>
+    <input type="text">
+    <input type="checkbox">
+    <div id="volume-label"></div>
+    <script>
+        function handleInput(e) {
+            inputLength = e.target.value.toString().length
+            divContent = `You have ${255 - inputLength} characters left`
+            div.textContent = divContent
+        }
+
+        div = document.querySelector('div')
+        textarea = document.querySelector('textarea')
+        textarea.addEventListener('input', handleInput)
+        textarea.addEventListener('paste', (e) => {
+            alert('Paste prohibited!');
+            e.preventDefault();
+        });
+        textarea.addEventListener('copy', (e) => {
+            e.preventDefault()
+            console.log('You copied!')
+        })
+
+        rangeInput = document.querySelector('input[type="range"]')
+        volumeLabel = document.querySelector('#volume-label')
+        rangeInput.addEventListener('input', (e) => {
+            console.log(e)
+            volumeLabel.innerText = `Volume: ${e.target.value}%`;
+        });
+
+        inputText = document.querySelector('input[type="text"]')
+        inputText.addEventListener('input', (e) => {
+            e.preventDefault()
+        })
+
+        inputText.addEventListener('focus', (e) => {
+            e.target.style.backgroundColor = 'red';
+            e.target.style.border = '2px solid blue';
+        });
+        
+        inputText.addEventListener('blur', (e) => {
+            if(!e.target.value.includes('@')) 
+                console.log('Not a valid email')
+        });
+
+        inputCheckbox = document.querySelector('input[type="checkbox"]')
+        inputCheckbox.addEventListener('input', (e) => {
+            console.log(e.target.checked)
+        })
+    </script>
+</body>
+
+</html>
