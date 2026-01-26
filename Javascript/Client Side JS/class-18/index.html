@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling, Capturing & Delegation</title>
+</head>
+
+<body>
+    <div id="grandparent" style="padding: 20px; background: red;">
+        Grandparent
+        <div id="parent" style="padding: 20px; background: yellow;">
+            Parent
+            <button id="child">Child</button>
+        </div>
+    </div>
+
+    <script>
+        function print(e) {
+            console.log(e.currentTarget.id)
+            e.stopImmediatePropagation()
+        }
+        function print2(e) {
+            console.log(e.currentTarget.id)
+        }
+
+        document.getElementById('child').addEventListener(
+            'click',
+            print,
+        );
+
+        document.getElementById('child').addEventListener(
+            'click',
+            print2,
+        );
+
+        document.getElementById('parent').addEventListener(
+            'click',
+            print
+        );
+
+        document.getElementById('grandparent').addEventListener(
+            'click',
+            print,
+        );
+    </script>
+</body>
+
+</html>

@@ -27,7 +27,7 @@ document.removeEventListener("click", handler, true);
 
 শুধুমাত্র `true` বা `false` দেওয়ার বদলে আপনি একটি অবজেক্ট পাস করতে পারেন যা ইভেন্টের আচরণ আরও স্পষ্টভাবে নিয়ন্ত্রণ করে। এই অবজেক্টে ৩টি প্রধান প্রপার্টি থাকতে পারে: `capture`, `once`, এবং `passive`।
 
-**১. `capture: true**`
+**১. `capture: true`**
 এটি বুলিয়ান `true` এর মতোই কাজ করে। এটি ইভেন্টটিকে ক্যাপচারিং ফেজে (Capturing Phase) হ্যান্ডেল করে।
 
 ```javascript
@@ -35,7 +35,7 @@ document.addEventListener("click", handleClick, { capture: true });
 
 ```
 
-**২. `once: true**`
+**২. `once: true`**
 যদি আপনি চান ইভেন্টটি **মাত্র একবার** ঘটুক এবং তারপর অটোমেটিক রিমুভ হয়ে যাক, তবে এটি ব্যবহার করবেন।
 
 ```javascript
@@ -45,7 +45,7 @@ document.addEventListener("click", () => {
 
 ```
 
-**৩. `passive: true**`
+**৩. `passive: true`**
 এটি ব্রাউজারকে জানায় যে, এই ইভেন্ট হ্যান্ডলারটি `preventDefault()` কল করবে না। এটি মোবাইল ডিভাইসে স্ক্রলিং (Scrolling) পারফরম্যান্স বাড়াতে খুব গুরুত্বপূর্ণ। ব্রাউজার আগে থেকেই জানে যে স্ক্রলিং আটকানো হবে না, তাই স্ক্রলিং খুব মসৃণ (Smooth) হয়।
 
 > **নোট:** Chrome এবং Firefox-এ `touchmove` এবং `mousewheel` ইভেন্টগুলোর জন্য `passive` ডিফল্টভাবে `true` থাকে। আপনি যদি স্ক্রলিং আটকাতে চান, তবে আপনাকে স্পষ্টভাবে `passive: false` সেট করতে হবে।
@@ -102,7 +102,7 @@ parent.addEventListener("click", function(event) {
 # এক নজরে সারসংক্ষেপ (Summary)
 
 | ফিচার | কাজ |
-  |
+| -- | -- |
 | **`capture: true`** | ইভেন্ট উপর থেকে নিচে (Capturing Phase) ধরা হবে। |
 | **`once: true`** | ইভেন্টটি একবার রান হয়ে নিজে নিজেই ডিলিট হয়ে যাবে। |
 | **`passive: true`** | স্ক্রলিং পারফরম্যান্স বাড়ায় (বলে দেয় যে `preventDefault` কল হবে না)। |
