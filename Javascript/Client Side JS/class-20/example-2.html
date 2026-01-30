@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <div>
+        <strong>Bio:</strong> <span id="bioDisplay">Loading...</span>
+    </div>
+
+    <script>
+        // মনে করি এই ডাটা সার্ভার বা ডাটাবেস থেকে এসেছে
+        const urlParams = new URLSearchParams(window.location.search);
+        const userBio = urlParams.get("bio");
+
+        if (userBio) {
+            document.getElementById("bioDisplay").innerHTML = userBio;
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+?bio=<b>Hacker</b><img src="x" onerror="alert('Hacked via innerHTML!')">
+
+
+-->

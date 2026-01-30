@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Next Page Link</title>
+</head>
+
+<body>
+    <h2>Click below to proceed</h2>
+    <a id="nextLink" href="#">Go to Next Page</a>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const userUrl = params.get("url");
+
+        if (userUrl) {
+            const linkTag = document.getElementById("nextLink");
+            // 'javascript:' protocol
+            linkTag.setAttribute("href", userUrl);
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- 
+Link Attribute Injection
+?url=javascript:alert('XSS_Executed')
+-->

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vulnerable Search Page</title>
+    <style>body { font-family: sans-serif; padding: 20px; }</style>
+</head>
+<body>
+    <h2>Search Page</h2>
+    <div id="results"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("q");
+        console.log(query)
+        if (query) {
+            document.getElementById("results").innerHTML = "Results for: " + query
+        } else {
+            document.getElementById("results").innerText = "Please search for something.";
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+document.cookie = "username=admin_secret_123";
+http://127.0.0.1:5500/Javascript/Client%20Side%20JS/class-20/example-1.html?q=<img src=x onerror=alert('Cookie_Stolen:'%2Bdocument.cookie)>
+ 
+-->
+
+<!-- 
+http://
+127.0.0.1
+:5500
+/Javascript/Client%20Side%20JS/class-20/example-5.html?user=%22%20onmouseover=%22alert(%27Mouseover_Hack%27)
+-->

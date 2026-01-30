@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Language Selector</title>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+    <div id="msg"></div>
+
+    <script>
+        //#English
+        var lang = decodeURIComponent(window.location.hash.substring(1));
+
+        if (lang) {
+            document.write("Selected Language: " + lang);
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- 
+#<script>alert(document.domain)</script>
+-->

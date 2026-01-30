@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+</head>
+
+<body>
+    <h2>Login</h2>
+    <form>
+        Username: <input type="text" id="username" value="">
+    </form>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("user");
+
+        if (name) {
+            document.getElementById("username").outerHTML =
+                '<input type="text" id="username" value="' + name + '">';
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- 
+?user=" onmouseover="alert('Mouseover_Hack')
+-->
