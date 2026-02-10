@@ -1,0 +1,23 @@
+{
+  "name": "web-dev-frontend-101",
+  "version": "1.0.0",
+  "description": "repository for web-dev-frontend-101 course",
+  "homepage": "https://github.com/miftahulislam2023/webdevfrontend101#readme",
+  "bugs": {
+    "url": "https://github.com/miftahulislam2023/webdevfrontend101/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miftahulislam2023/webdevfrontend101.git"
+  },
+  "license": "ISC",
+  "author": "Miftahul Islam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}
