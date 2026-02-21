@@ -1,0 +1,76 @@
+:root {
+    --button: #0984e3;
+    --button-hover: #00b521;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --background-body: #f1f2f6;
+    --white: #ffffff;
+    --badge-color: #ff4757;
+}
+
+body {
+    background: var(--background-body);
+
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+#card {
+    background: var(--white);
+    border-radius: 20px;
+    width: 340px;
+    overflow: hidden;
+}
+
+img {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+}
+
+#text-container {
+    padding: 20px;
+}
+
+#title {
+    /* ctrl + space */
+    color: var(--text-dark);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#subtitle {
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2pt;
+}
+
+#description {
+    color: var(--text-light);
+}
+
+#add-to-cart>span {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+#add-to-cart>button {
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--button);
+    color: var(--white);
+    font-weight: bold;
+}
+
+#add-to-cart>button:hover {
+    background-color: var(--button-hover);
+}
+
+#add-to-cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

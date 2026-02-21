@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --dark: #1a1614;
+      --accent: #c8522a;
+      --muted: #8a7f77;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .card {
+      width: 320px;
+      background: var(--card-bg);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 20px 60px rgba(0,0,0,0.08);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 32px 80px rgba(0,0,0,0.12);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Image area */
+    .card__image-wrap {
+      position: relative;
+      height: 280px;
+      background: #ede8df;
+      overflow: hidden;
+    }
+
+    .card__image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover .card__image-wrap img {
+      transform: scale(1.04);
+    }
+
+    .card__badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+    }
+
+    .card__wishlist {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .card__wishlist:hover {
+      background: #fff;
+      transform: scale(1.1);
+    }
+
+    .card__wishlist svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: var(--dark);
+      stroke-width: 1.5;
+      transition: fill 0.2s, stroke 0.2s;
+    }
+
+    .card__wishlist:hover svg {
+      fill: var(--accent);
+      stroke: var(--accent);
+    }
+
+    /* Body */
+    .card__body {
+      padding: 22px 22px 20px;
+    }
+
+    .card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .card__category {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card__rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .card__stars {
+      color: #e8a23a;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .card__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .card__desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+
+    /* Sizes */
+    .card__sizes {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .card__size {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ddd;
+      background: none;
+      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      color: var(--dark);
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .card__size:hover,
+    .card__size.active {
+      border-color: var(--dark);
+      background: var(--dark);
+      color: #fff;
+    }
+
+    /* Footer */
+    .card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card__price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .card__price-current {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .card__price-original {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .card__btn {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s;
+    }
+
+    .card__btn:hover {
+      background: var(--accent);
+      transform: scale(1.02);
+    }
+
+    .card__btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card__image-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=640&q=80"
+        alt="Product" />
+      <span class="card__badge">Sale</span>
+      <button class="card__wishlist" aria-label="Add to wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+    </div>
+
+    <div class="card__body">
+      <div class="card__meta">
+        <span class="card__category">Footwear</span>
+        <div class="card__rating">
+          <span class="card__stars">★★★★★</span>
+          <span>4.9</span>
+        </div>
+      </div>
+
+      <h2 class="card__title">Velocity Runner Pro</h2>
+      <p class="card__desc">Lightweight performance design with responsive foam cushioning for all-day comfort.</p>
+
+      <div class="card__sizes">
+        <button class="card__size">S</button>
+        <button class="card__size active">M</button>
+        <button class="card__size">L</button>
+        <button class="card__size">XL</button>
+      </div>
+
+      <div class="card__footer">
+        <div class="card__price">
+          <span class="card__price-current">$89</span>
+          <span class="card__price-original">$129</span>
+        </div>
+        <button class="card__btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Size selector toggle
+    document.querySelectorAll('.card__size').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.card__size').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
