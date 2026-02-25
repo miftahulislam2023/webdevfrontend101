@@ -2,7 +2,7 @@
 
 ## Notes
 - Components: UI তৈরির ব্লক (UI building blocks)
-- JSX markup দিয়ে Component এর সাহায্যে React application develop করতে আপনি বাধ্য না। এটা একতা পদ্ধতি। আরও পদ্ধতি আছে।
+- JSX markup দিয়ে Component এর সাহায্যে React application develop করতে আপনি বাধ্য না। এটা একটা পদ্ধতি। আরও পদ্ধতি আছে।
 - অ্যাপের জন্য পুনরায় ব্যবহারযোগ্য UI এলিমেন্ট আমরা বানাতে পারি JSX use করে।
 - একটি React component হলো একটি JavaScript function যাকে আপনি মার্কআপ দিয়ে সাজাতে পারেন।
   1. JavaScript function
