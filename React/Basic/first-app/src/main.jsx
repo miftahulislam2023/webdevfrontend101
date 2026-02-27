@@ -1,9 +1,13 @@
 import { createRoot } from 'react-dom/client'
-import JavaScriptInJSX from './JavaScriptInJSX'
+import Props from './Props.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <>
-    <JavaScriptInJSX/>
+    <Props
+      phone='017'
+      email='miftah@miftahcoding.com'
+      address='Dhaka'
+    />
   </>
 )
