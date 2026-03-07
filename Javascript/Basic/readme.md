@@ -1,11 +1,9 @@
 - [Javascript] Class 1 - Running JS, Comments, alert, console log: 14:41
 - [Javascript] Class 2 Part 1 - console log, error, warn, table etc: 9:43
 - [Javascript] Class 2 Part 2 - Variables and Data Types Introduction: 14:10
-- [Javascript] Class 3 Part 1 - More on variables, use of typeof, integers vs bigint.mkv: 23:03
 - [Javascript] Class 3 Part 1 - More on variables, use of typeof, integers vs bigint: 23:03
 - [Javascript] Class 3 Part 2 - Dynamic vs Static Typed Language, typeof: 7:56
 - [Javascript] Class 3 Part 3 - Reference types, why null is returned as object: 6:02
-- [Javascript] Class 4 Part 1 - Type Conversion and Type Coercion.mkv: 15:35
 - [Javascript] Class 4 Part 1 - Type Conversion and Type Coercion: 15:35
 - [Javascript] Class 4 Part 2 - Basic Operators: 12:18
 - [Javascript] Class 5 Part 1 - String Operations: 37:13
@@ -16,7 +14,7 @@
 - [Javascript] Class 6 Part 3 - Slice, Splice, Shift, Unshift Array Methods: 9:20
 - [Javascript] Class 7 - Spread Operator, Array Nesting, Array Concat, Static Array Methods: 22:49
 - [Javascript] Class 8 Part 1 - Object Properties, Create, Delete, Update: 14:31
-- [Javascript] Class 8 Part 1 - Object Spread Operator, Object Destructuring: 10:50
+- [Javascript] Class 8 Part 2 - Object Spread Operator, Object Destructuring: 10:50
 - [Javascript] Class 9 - Object Methods and JSON: 33:44
 - [Javascript] Class 10 Part 1 - Program Control Flow Using if, else and else if: 9:56
 - [Javascript] Class 10 Part 2 - Switch: 26:33
