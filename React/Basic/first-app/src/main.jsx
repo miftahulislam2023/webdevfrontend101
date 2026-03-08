@@ -1,13 +1,12 @@
 import { createRoot } from 'react-dom/client'
-import Props from './Props.jsx'
 import './index.css'
-
+import Card from './Card'
+import ProductCard from './ProductCard'
 createRoot(document.getElementById('root')).render(
   <>
-    <Props
-      phone='017'
-      email='miftah@miftahcoding.com'
-      address='Dhaka'
-    />
+    <Card>
+      <ProductCard/>
+      <ProductCard/>
+    </Card>
   </>
 )
