@@ -1,12 +1,9 @@
 import { createRoot } from 'react-dom/client'
+import PackingList from './Conditional Rendering/PackingList'
 import './index.css'
-import Card from './Card'
-import ProductCard from './ProductCard'
+
 createRoot(document.getElementById('root')).render(
   <>
-    <Card>
-      <ProductCard/>
-      <ProductCard/>
-    </Card>
+    <PackingList />
   </>
 )
