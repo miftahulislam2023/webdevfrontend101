@@ -1,9 +1,9 @@
-//Truthy Falsy values
+//Truthy & Falsy values
 /*
 Falsy values
 - false
 - 0
-- '' or "" (empty strings)
+- '' or "" or `` (empty strings)
 - null
 - undefined
 - NaN
@@ -57,3 +57,7 @@ if ([]) {
 if (function () { }) {
     console.log("Empty function")
 }
+
+result = "" && "foo"; // result is assigned "" (empty string)
+result = 2 && 0; // result is assigned 0
+result = "foo" && 4; // result is assigned 4

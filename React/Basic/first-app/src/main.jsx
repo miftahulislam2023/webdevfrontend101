@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import PackingList from './Conditional Rendering/PackingList'
 import './index.css'
+import AndOperator from './Conditional Rendering/AndOperator'
 
 createRoot(document.getElementById('root')).render(
   <>
-    <PackingList />
+    <AndOperator />
   </>
 )
