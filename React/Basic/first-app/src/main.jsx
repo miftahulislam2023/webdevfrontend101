@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
+import ListRender from './Rendering List/ListRender'
 import './index.css'
-import AndOperator from './Conditional Rendering/AndOperator'
 
 createRoot(document.getElementById('root')).render(
-  <>
-    <AndOperator />
-  </>
+  <div>
+    <ListRender />
+  </div>
 )
