@@ -1,26 +1,39 @@
+import { Fragment } from "react/jsx-runtime";
+import { v4 as uuidv4 } from "uuid";
+
 const ListRender = () => {
-    const mangoList = [
-        "Fojli",
-        "Aam Rupali",
-        "Langra",
-        "Gopalvog",
-        "Hari Vanga",
-        "Himsagor",
-    ]
+  const mangoList = [
+    {
+      name: "Fojli",
+      id: 1,
+    },
+    {
+      name: "Aam Rupali",
+      id: 2,
+    },
+    {
+      name: "Himsagor",
+      id: 3,
+    },
+    {
+      name: "Gopalvog",
+      id: 4,
+    },
+    {
+      name: "Langra",
+      id: 5,
+    },
+  ];
 
-    const liTags = mangoList.map(mango =>
-        <li className="text-red-800">
-            {`I love ${mango}`}
-        </li>
-    )
+  return (
+    <Fragment>
+      {mangoList.map((mango) => (
+        <div key={uuidv4()} className="text-red-800">
+          {`I love ${mango.name}`}
+        </div>
+      ))}
+    </Fragment>
+  );
+};
 
-    return (
-        <ul>
-            {
-                liTags
-            }
-        </ul>
-    )
-}
-
-export default ListRender
+export default ListRender;
