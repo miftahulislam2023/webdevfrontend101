@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import ListRender from './Rendering List/ListRender'
+import { StrictMode } from 'react';
+import TeaSet from './Pure Components/TeaSet';
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
-  <div>
-    <ListRender />
-  </div>
+  <StrictMode>
+    <TeaSet />
+  </StrictMode>
 )
